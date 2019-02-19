@@ -1,0 +1,42 @@
+.MainHeader {
+    .mainLinks{
+
+        border-bottom: 1px solid transparent;
+
+        &.active{
+            border-bottom: 1px solid #2294E6;
+        }
+    }
+
+    .bellIcon{
+        display: inline-block;
+        margin-top: 15px;
+        width: 30px;
+        height: 30px;
+        background: url('../../resources/img/notification\ .svg');
+    }
+    .userIcon {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url('../../resources/img/user\.svg');
+    }
+    .hamburgerIcon{
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url('../../resources/img/menu\.svg');
+    }
+    .dropdownMenu{
+        // display: flex;
+        // flex-flow: column nowrap;
+        a{
+            display: block;
+            padding-left: 5px;
+            &.active{
+                border: none;
+                
+            }
+        }
+    }
+}
