@@ -12,6 +12,7 @@ import { observer, inject } from 'mobx-react';
 @observer
 class MainRoutes extends Component {
     render() {
+        console.log(this.props.store);
         return (
             <div className="MainRoutes">
                 <BrowserRouter>

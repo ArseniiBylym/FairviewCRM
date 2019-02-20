@@ -3,9 +3,6 @@ import { NavLink } from 'react-router-dom';
 import './MainHeader.scss';
 import { Routes } from '../../utils/constansts';
 import NavMenu from '../NavMenu/NavMenu';
-// import UserIcon from '../../resources/img/user.svg';
-// import BellIcon from '../../resources/img/notification.svg';
-// import HamburgerIcon from '../../resources/img/menu.svg';
 
 class MainHeader extends Component {
     render() {
@@ -15,7 +12,7 @@ class MainHeader extends Component {
                     <button className="btn btn-drop no-caret dropdown-toggle" id="epicsDrop" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div className="mr-2 hamburgerIcon"/>
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right dropdownMenu" aria-labelledby="epicsDrop">
+                    <div className="dropdown-menu dropdown-menu-right dropdownMenu" aria-labelledby="epicsDrop">
                         <ul>
                             <NavMenu />
                         </ul>
