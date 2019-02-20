@@ -4,9 +4,13 @@ import SearchForm from '../../components/SearchForm/SearchForm'
 import DateRangeSelect from '../../components/SearchForm/DateRangeSelect/DateRangeSelect'
 import FilterSelect from '../../components/SearchForm/FilterSelect/FilterSelect'
 import FilterCheckbox from '../../components/SearchForm/FilterCheckbox/FilterCheckbox'
+import { observer, inject } from 'mobx-react';
 
+@inject('store')
+@observer
 class Leads extends Component {
     render() {
+        console.log(this.props);
         return (
             <div className="Leads">
                 <section className="border-bottom">

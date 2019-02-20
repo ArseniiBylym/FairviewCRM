@@ -3,9 +3,24 @@ import { NavLink } from 'react-router-dom';
 import './MainHeader.scss';
 import { Routes } from '../../utils/constansts';
 import NavMenu from '../NavMenu/NavMenu';
+import { UserActions } from '../../actions/AllActions';
+import { withRouter } from "react-router";
+import { observer, inject } from 'mobx-react';
 
+
+@inject('store')
+@observer
 class MainHeader extends Component {
+
+    logOut = (e) => {
+        e.preventDefault();
+        UserActions.logout();
+        this.props.history.push('/login')
+    }
+
     render() {
+        console.log(this.props)
+        console.log(this.props.history)
         return (
             <div className="MainHeader topbar">
                 <div className="dropdown epics-collapsible-dropdown">
@@ -38,7 +53,7 @@ class MainHeader extends Component {
                         </button>
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userDrop">
                             <a className="dropdown-item" href="#">User Profile</a>
-                            <a className="dropdown-item" href="#">Logout</a>
+                            <a onClick={this.logOut} className="dropdown-item" href="#">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -47,4 +62,4 @@ class MainHeader extends Component {
     }
 }
 
-export default MainHeader;
+export default withRouter(MainHeader);
