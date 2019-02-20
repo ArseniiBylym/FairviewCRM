@@ -5,12 +5,36 @@ import DateRangeSelect from '../../components/SearchForm/DateRangeSelect/DateRan
 import FilterSelect from '../../components/SearchForm/FilterSelect/FilterSelect'
 import FilterCheckbox from '../../components/SearchForm/FilterCheckbox/FilterCheckbox'
 import { observer, inject } from 'mobx-react';
+import { UserActions, LeadsActions } from '../../actions/AllActions'
+import LeadsCard from '../../components/LeadsCard/LeadsCard';
+import { toJS } from 'mobx'
 
 @inject('store')
 @observer
 class Leads extends Component {
+
+    componentDidMount = async () => {
+        const result = await LeadsActions.fetchLeads();
+    }
+
+
     render() {
-        console.log(this.props);
+        console.log(this.props.store);
+         
+        let leads = null;
+        if (this.props.store.Leads.leads && this.props.store.Leads.leads.length > 0) {
+            // console.log(toJS(this.props.store.Leads.leads));
+            // const leadsToArray = toJS(this.props.store.Leads.leads)
+            // console.log(leadsToArray)
+
+            leads = this.props.store.Leads.leads.map((item, i) => {
+                return (
+                    <LeadsCard key={item.providerId} config={item}/>
+                )
+            })
+        }
+
+
         return (
             <div className="Leads">
                 <section className="border-bottom">
@@ -27,6 +51,11 @@ class Leads extends Component {
                         <FilterCheckbox />
                     </SearchForm>
                 </section>
+                <div className="p-2r">
+                    <div className="row">
+                        {leads}
+                    </div>
+                </div>
             </div>
         );
     }
