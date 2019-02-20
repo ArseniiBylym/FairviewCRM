@@ -6,8 +6,10 @@ import Activities from './Activities/Activities';
 import PricingRequests from './PricingRequests/PricingRequests';
 import { Routes } from '../utils/constansts';
 import MainHeader from '../components/MainHeader/MainHeader'
+import { observer, inject } from 'mobx-react';
 
-
+@inject('store')
+@observer
 class MainRoutes extends Component {
     render() {
         return (
