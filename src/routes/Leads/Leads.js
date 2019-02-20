@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import './Leads.scss';
+import { observer, inject } from 'mobx-react';
 
+@inject('store')
+@observer
 class Leads extends Component {
     render() {
+        console.log(this.props);
         return (
             <div className="Leads">
                 <section className="border-bottom">

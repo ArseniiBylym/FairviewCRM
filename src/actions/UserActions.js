@@ -1,8 +1,13 @@
 import { action } from 'mobx';
-import { UsersStore } from '../store/AllStores';
+import { UsersStore, UserStore } from '../store/AllStores';
 
-export class UserActionClass {
-    @action loginUser() {
-        console.log('hello')
+export class UserActionsClass {
+    @action login() {
+        console.log('You are loged in')
+        UserStore.isLoged = true;
+    }
+    @action logout() {
+        console.log('You are loged out')
+        UserStore.isLoged = false;
     }
 }
