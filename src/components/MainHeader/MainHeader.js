@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './MainHeader.scss';
 import { Routes } from '../../utils/constansts';
-// import UserIcon from '../../resources/img/user.svg'
-// import BellIcon from '../../resources/img/notification.svg'
+import NavMenu from '../NavMenu/NavMenu';
+// import UserIcon from '../../resources/img/user.svg';
+// import BellIcon from '../../resources/img/notification.svg';
+// import HamburgerIcon from '../../resources/img/menu.svg';
 
 class MainHeader extends Component {
     render() {
@@ -11,41 +13,21 @@ class MainHeader extends Component {
             <div className="MainHeader topbar">
                 <div className="dropdown epics-collapsible-dropdown">
                     <button className="btn btn-drop no-caret dropdown-toggle" id="epicsDrop" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div className="hamburgerIcon"></div>
+                        <div className="mr-2 hamburgerIcon"/>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right dropdownMenu" aria-labelledby="epicsDrop">
-                        <NavLink className="mainLinks" to={Routes.LEADS}activeClassName="active">
-                            Leads
-                        </NavLink>
-                        <NavLink className="mainLinks" to={Routes.ACTIVITES}activeClassName="active">
-                            Activities
-                        </NavLink>
-                        <NavLink className="mainLinks" to={Routes.PRICING_REQUESTS}activeClassName="active">
-                            Pricing Requests
-                        </NavLink>
+                        <ul>
+                            <NavMenu />
+                        </ul>
                     </div>
                 </div>
                 <div className="logo">
-                    <NavLink className="mainLinks" to={Routes.LEADS}activeClassName="active">
+                    <NavLink className="mainLinks" to={Routes.LEADS} activeClassName="active">
                         <div className="logo-demo">Fairview</div>
                     </NavLink>    
                 </div>
                 <ul className="epics-menu epics-collapsible border-right">
-                    <li>
-                        <NavLink className="mainLinks" to={Routes.LEADS}activeClassName="active">
-                            Leads
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink className="mainLinks" to={Routes.ACTIVITES}activeClassName="active">
-                            Activities
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink className="mainLinks" to={Routes.PRICING_REQUESTS}activeClassName="active">
-                            Pricing Requests
-                        </NavLink>
-                    </li>
+                    <NavMenu />
                 </ul>
                 <ul className="epics-menu leads-menu border-right flex-grow-1">
                     <li className="ml-auto">
