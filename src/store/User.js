@@ -1,7 +1,15 @@
 import { observable, computed } from 'mobx';
 
 export class User {
-    @observable username = 'user';
-    @observable password = '';
+    @observable id = null
+    @observable username = ''
+    @observable name = ''
+    @observable email = null
+    @observable type = null
+    @observable slpcode = null
+    @observable status = null
+
+    @observable accessToken = null
+
     @observable isLoged = false;
 }

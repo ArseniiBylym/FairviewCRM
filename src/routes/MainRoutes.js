@@ -14,6 +14,7 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 @observer
 class MainRoutes extends Component {
     render() {
+        console.log(this.props.store.User.isLoged)
         return (
             <div className="MainRoutes">
                 <BrowserRouter>
@@ -24,6 +25,7 @@ class MainRoutes extends Component {
                             <PrivateRoute store={this.props.store} path={Routes.LEADS} component={Leads} />
                             <PrivateRoute store={this.props.store} path={Routes.ACTIVITES} component={Activities} />
                             <PrivateRoute store={this.props.store} path={Routes.PRICING_REQUESTS} component={PricingRequests} />
+                            <Redirect from='/' to={this.props.store.User.isLoged ? '/leads' : '/login'} />
                         </Switch>
                     </Fragment>
                 </BrowserRouter>

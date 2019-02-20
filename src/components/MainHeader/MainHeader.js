@@ -5,7 +5,11 @@ import { Routes } from '../../utils/constansts';
 import NavMenu from '../NavMenu/NavMenu';
 import { UserActions } from '../../actions/AllActions';
 import { withRouter } from "react-router";
+import { observer, inject } from 'mobx-react';
 
+
+@inject('store')
+@observer
 class MainHeader extends Component {
 
     logOut = (e) => {
@@ -15,6 +19,7 @@ class MainHeader extends Component {
     }
 
     render() {
+        console.log(this.props)
         console.log(this.props.history)
         return (
             <div className="MainHeader topbar">
