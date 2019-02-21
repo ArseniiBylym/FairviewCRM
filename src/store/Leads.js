@@ -35,12 +35,7 @@ const testLeads = [
 
 export class Leads {
     @observable leads = [];
-<<<<<<< HEAD
     @observable totalLeadsAmount = null;
-=======
-    // @observable leads = testLeads;
-    @observable totalLeadsAmmount = null;
->>>>>>> ee19361568649cc23f7012c51bad47a336918d37
     @observable leadsFetched = false;
 
     @observable activeLeads = [];

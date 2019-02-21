@@ -25,13 +25,8 @@ class LeadsCard extends Component {
         return (
             <div className="LeadsCard col-sm-6 col-lg-4 col-xl-3">
             <div className="c-card c-card-shadow p-0">
-<<<<<<< HEAD
-                <div className="p-3 border-bottom"><a href="lead.html">
-                    <div className="t-600-h text-truncate">{legalBusName}</div></a>
-=======
                 <div onClick={this.leadClickHandler} className="p-3 border-bottom cursor-pointer background-on-hover">
                     <div className="t-600-h text-truncate">{legalBusName}</div>
->>>>>>> ee19361568649cc23f7012c51bad47a336918d37
                     <div className="t-400 c-gray-400">{dba}</div>
                 </div>
                 <div className="p-3">
