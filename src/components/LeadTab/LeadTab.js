@@ -15,7 +15,7 @@ function LeadTab ({id, path, title}) {
 
     return (
         <li>    
-            <NavLink to={`leads/${path}`}>
+            <NavLink to={`/leads/${path}`}>
                 <div className="lead-name">{title}</div>
                 <div onClick={closeHandler} className="lead-close">
                     <img src={iconClose} alt='' />

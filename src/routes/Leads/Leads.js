@@ -14,7 +14,7 @@ import { toJS } from 'mobx'
 class Leads extends Component {
 
     componentDidMount = async () => {
-        // const result = await LeadsActions.fetchLeads();
+        const result = await LeadsActions.fetchLeads();
     }
 
 
@@ -25,7 +25,7 @@ class Leads extends Component {
         if (this.props.store.Leads.leads && this.props.store.Leads.leads.length > 0) {
             leads = this.props.store.Leads.leads.map((item, i) => {
                 return (
-                    <LeadsCard key={item.providerId} config={item}/>
+                    <LeadsCard key={item.databaseId} config={item}/>
                 )
             })
         }

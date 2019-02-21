@@ -15,6 +15,7 @@ class LeadsCard extends Component {
 
     leadClickHandler = () => {
         LeadsActions.addToActiveTabs(this.props.config);
+        this.props.history.push(`/leads/${this.props.config.databaseId}`)
     }
 
 
@@ -48,4 +49,4 @@ class LeadsCard extends Component {
     }
 }
 
-export default LeadsCard;
+export default withRouter(LeadsCard);

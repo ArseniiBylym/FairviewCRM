@@ -20,14 +20,12 @@ class MainHeader extends Component {
     }
 
     render() {
-        console.log(this.props)
-        console.log(this.props.history)
 
         let openedTabs = null;
         if (this.props.store.Leads && this.props.store.Leads.activeLeads.length > 0) {
             openedTabs = this.props.store.Leads.activeLeads.map((item, i) => {
                 return (
-                    <LeadTab key={item.providerId} id={item.providerId} path={item.providerId} title={item.legalBusName} />
+                    <LeadTab key={item.databaseId} id={item.databaseId} path={item.databaseId} title={item.legalBusName} />
                 )
             })
         }
