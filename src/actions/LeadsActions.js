@@ -4,7 +4,6 @@ import { fetchFromApi, URL_PATH } from '../api/api'
 
 export class LeadsActionsClass {
     @action async fetchLeads() {
-        console.log('hello')
 
         const token = UserStore.accessToken
         const result = await fetchFromApi(URL_PATH.PROVIDER, {
@@ -15,10 +14,8 @@ export class LeadsActionsClass {
             },
         })
 
-        console.log(result);
         if(result.data.data) {
             const leadsArray = result.data.data.map((item, i) => {
-                // console.log(item);
                 return {
                     databaseId: item.databaseId,
                     providerId: item.providerId,
@@ -30,11 +27,45 @@ export class LeadsActionsClass {
                     plPhone: item.plPhone
                 }
             })
-            console.log(leadsArray)
             LeadsStore.leads = leadsArray;
             LeadsStore.totalLeadsAmount = result.data.total;
             LeadsStore.leadsFetched = true;
         };
     }
+
+    @action addToActiveTabs(lead) {
+        const isAlreadyAdded = LeadsStore.activeLeads.find((item, i) => {
+             return item.databaseId === lead.databaseId;
+        })
+        if (!isAlreadyAdded) LeadsStore.activeLeads.push(lead);
+        else return;
+    }
+
+    @action removeFromActiveTabs(id) {
+        const filteredLeads =  LeadsStore.activeLeads.filter((item, i) => {
+            return item.databaseId !== id
+        });
+        LeadsStore.activeLeads = filteredLeads;
+    }
+
+    @action async setCurrentLead(databaseId) {
+        // const currentLead = LeadsStore.activeLeads.find((item, i) => item.databaseId === databaseId)
+        // LeadsStore.currentLead = currentLead;
+
+        const token = UserStore.accessToken;
+        const result = await fetchFromApi(URL_PATH.PROVIDER + `/${databaseId}`, {
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json" 
+            },
+        })
+        console.log(result.data);
+        const {data} = result;
+        if(data) {
+            LeadsStore.currentLead = data;
+        }
+
+    } 
 
 }

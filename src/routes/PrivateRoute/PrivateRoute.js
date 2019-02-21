@@ -10,7 +10,7 @@ class PrivateRoute extends Component {
         const isUserAuth = this.props.store.User.isLoged;
         if (isUserAuth) {
             return (
-                <Component />
+               <Route component={Component} />
             )
         } else {
             return (

@@ -23,13 +23,9 @@ class Leads extends Component {
          
         let leads = null;
         if (this.props.store.Leads.leads && this.props.store.Leads.leads.length > 0) {
-            // console.log(toJS(this.props.store.Leads.leads));
-            // const leadsToArray = toJS(this.props.store.Leads.leads)
-            // console.log(leadsToArray)
-
             leads = this.props.store.Leads.leads.map((item, i) => {
                 return (
-                    <LeadsCard key={item.providerId} config={item}/>
+                    <LeadsCard key={item.databaseId} config={item}/>
                 )
             })
         }

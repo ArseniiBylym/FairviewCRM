@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './LeadsCard.scss';
 import { Routes } from '../../utils/constansts';
 import NavMenu from '../NavMenu/NavMenu';
-import { UserActions } from '../../actions/AllActions';
+import { UserActions, LeadsActions } from '../../actions/AllActions';
 import { withRouter } from "react-router";
 import { observer, inject } from 'mobx-react';
 import iconUser from '../../resources/img/icon-user.svg'
@@ -12,14 +12,26 @@ import iconActivity from '../../resources/img/icon-activity.svg'
 @inject('store')
 @observer
 class LeadsCard extends Component {
+
+    leadClickHandler = () => {
+        LeadsActions.addToActiveTabs(this.props.config);
+        this.props.history.push(`/leads/${this.props.config.databaseId}`)
+    }
+
+
     render() {
         const { databaseId, providerId, legalBusName, dba, plCity, plState, plZipcode, plPhone } = this.props.config;
 
         return (
             <div className="LeadsCard col-sm-6 col-lg-4 col-xl-3">
             <div className="c-card c-card-shadow p-0">
+<<<<<<< HEAD
                 <div className="p-3 border-bottom"><a href="lead.html">
                     <div className="t-600-h text-truncate">{legalBusName}</div></a>
+=======
+                <div onClick={this.leadClickHandler} className="p-3 border-bottom cursor-pointer background-on-hover">
+                    <div className="t-600-h text-truncate">{legalBusName}</div>
+>>>>>>> ee19361568649cc23f7012c51bad47a336918d37
                     <div className="t-400 c-gray-400">{dba}</div>
                 </div>
                 <div className="p-3">
@@ -43,4 +55,4 @@ class LeadsCard extends Component {
     }
 }
 
-export default LeadsCard;
+export default withRouter(LeadsCard);
