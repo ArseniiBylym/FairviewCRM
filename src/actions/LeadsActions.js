@@ -37,4 +37,19 @@ export class LeadsActionsClass {
         };
     }
 
+    @action addToActiveTabs(lead) {
+        const isAlreadyAdded = LeadsStore.activeLeads.find((item, i) => {
+             return item.providerId === lead.providerId;
+        })
+        if (!isAlreadyAdded) LeadsStore.activeLeads.push(lead);
+        else return;
+    }
+
+    @action removeFromActiveTabs(id) {
+        const filteredLeads =  LeadsStore.activeLeads.filter((item, i) => {
+            return item.providerId !== id
+        });
+        LeadsStore.activeLeads =filteredLeads;
+    }
+
 }

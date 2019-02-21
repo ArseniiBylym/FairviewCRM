@@ -6,6 +6,7 @@ import NavMenu from '../NavMenu/NavMenu';
 import { UserActions } from '../../actions/AllActions';
 import { withRouter } from "react-router";
 import { observer, inject } from 'mobx-react';
+import LeadTab from '../LeadTab/LeadTab';
 
 
 @inject('store')
@@ -21,6 +22,15 @@ class MainHeader extends Component {
     render() {
         console.log(this.props)
         console.log(this.props.history)
+
+        let openedTabs = null;
+        if (this.props.store.Leads && this.props.store.Leads.activeLeads.length > 0) {
+            openedTabs = this.props.store.Leads.activeLeads.map((item, i) => {
+                return (
+                    <LeadTab key={item.providerId} id={item.providerId} path={item.providerId} title={item.legalBusName} />
+                )
+            })
+        }
         return (
             <div className="MainHeader topbar">
                 <div className="dropdown epics-collapsible-dropdown">
@@ -42,6 +52,7 @@ class MainHeader extends Component {
                     <NavMenu />
                 </ul>
                 <ul className="epics-menu leads-menu border-right flex-grow-1">
+                    {openedTabs}
                     <li className="ml-auto">
                         <div className="mr-2 bellIcon"/>
                     </li>
