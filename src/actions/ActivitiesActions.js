@@ -1,4 +1,4 @@
-import { action } from 'mobx';
+import { action, reaction } from 'mobx';
 import { ActivitiesStore, UserStore } from '../store/AllStores';
 
 import { fetchFromApi, URL_PATH } from '../api/api'
@@ -6,8 +6,6 @@ import { fetchFromApi, URL_PATH } from '../api/api'
 export class ActivitiesActionsClass {
     @action async fetchActivities() {
         
-        console.log('hello')
-
         const token = UserStore.accessToken
         const result = await fetchFromApi(URL_PATH.ACTIVITY, {
             method: 'get',
@@ -39,5 +37,42 @@ export class ActivitiesActionsClass {
             ActivitiesStore.activitiesFetched = true;
         };
     }
+
+    @reaction(() => ActivitiesStore.searchField,
+        (value) => {
+            console.log(value)
+        }
+    )
+
+    @action searchFieldHandler(value) {
+        ActivitiesStore.searchField = value
+
+        const filteredArr = ActivitiesStore.activities.filter(item => {
+            ActivitiesStore.searchField = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
+            return item.activityType.search(ActivitiesStore.searchField) === 0
+            // return item.activityType.toLowerCase().indexOf(editedStr) !== -1
+        })
+        
+        if(filteredArr && ActivitiesStore.searchField) {
+            ActivitiesStore.filteredActivitiesBySearch = filteredArr
+        } else if (!filteredArr && ActivitiesStore.searchField) {
+            ActivitiesStore.filteredActivitiesBySearch = []
+        }
+    }
+
+    // @action filterActivitiesBySearch(inputText) {
+    //     if(!inputText) {
+    //         ActivitiesStore.filteredActivitiesBySearch = []
+    //         return
+    //     }
+
+    //     // const filteredArr = ActivitiesStore.activities.filter(item => {
+    //     //     // const editedInputText = inputText.charAt(0).toUpperCase() + inputText.slice(1).toLowerCase()
+    //     //     return item.activityType.search(ActivitiesStore.searchField) === 0
+    //     // })
+
+      
+    //     console.log(ActivitiesStore)
+    // }
 
 }
