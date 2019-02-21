@@ -14,24 +14,29 @@ import { observer, inject } from 'mobx-react';
 class Activities extends Component {
 
     componentDidMount = async () => {
+        Activities.filteredActivitiesBySearch = []
         const result = await ActivitiesActions.fetchActivities();
     }
     
     render() {
-        console.log(this.props.store);
-         
-        let activities = null;
-        if (this.props.store.Activities.activities && this.props.store.Activities.activities.length > 0) {
-            // console.log(toJS(this.props.store.Leads.leads));
-            // const leadsToArray = toJS(this.props.store.Leads.leads)
-            // console.log(leadsToArray)
+        console.log(this.props.store.Activities.filteredActivitiesBySearch);
 
-            activities = this.props.store.Activities.activities.map((item, i) => {
+        let activities = null;
+        if (this.props.store.Activities.searchField) {
+            activities = this.props.store.Activities.filteredActivitiesBySearch.map((item) => {
+                return (
+                    <ActivitiesCard key={item.id} config={item}/>
+                )
+            })
+        } else {
+            activities = this.props.store.Activities.activities.map((item) => {
                 return (
                     <ActivitiesCard key={item.id} config={item}/>
                 )
             })
         }
+
+        console.log(this.props.store.Activities)
         return (
             <div className="Activities">
                 <section className="border-bottom">

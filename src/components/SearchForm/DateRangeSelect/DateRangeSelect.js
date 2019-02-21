@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import iconCalendar from '../../../resources/img/calendar.svg'
+
 // import './DateRangeSelect.scss';
 
 class DateRangeSelect extends Component {
@@ -10,7 +12,7 @@ class DateRangeSelect extends Component {
               <div className="input-group">
                 <input className="form-control date-range-picker" id="filter-date-range" />
                 <div className="input-group-append">
-                <span className="input-group-text"><img src="../../../resources/img/calendar.svg" alt="Calendar icon"/></span>
+                <span className="input-group-text"><img src={iconCalendar} alt="Calendar icon"/></span>
                 </div>
               </div>
             </div>
