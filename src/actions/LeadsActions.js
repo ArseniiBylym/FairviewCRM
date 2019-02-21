@@ -32,7 +32,7 @@ export class LeadsActionsClass {
             })
             console.log(leadsArray)
             LeadsStore.leads = leadsArray;
-            LeadsStore.totalLeadsAmmount = result.data.total;
+            LeadsStore.totalLeadsAmount = result.data.total;
             LeadsStore.leadsFetched = true;
         };
     }

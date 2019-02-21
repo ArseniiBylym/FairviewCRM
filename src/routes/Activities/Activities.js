@@ -3,9 +3,35 @@ import './Activities.scss';
 import SearchForm from '../../components/SearchForm/SearchForm'
 import DateRangeSelect from '../../components/SearchForm/DateRangeSelect/DateRangeSelect'
 import FilterSelect from '../../components/SearchForm/FilterSelect/FilterSelect'
+import { ActivitiesActions } from '../../actions/AllActions'
+import { UserActions, LeadsActions } from '../../actions/AllActions'
+import ActivitiesCard from '../../components/ActivitiesCard/ActivitiesCard';
+import { observer, inject } from 'mobx-react';
 
+
+@inject('store')
+@observer
 class Activities extends Component {
+
+    componentDidMount = async () => {
+        const result = await ActivitiesActions.fetchActivities();
+    }
+    
     render() {
+        console.log(this.props.store);
+         
+        let activities = null;
+        if (this.props.store.Activities.activities && this.props.store.Activities.activities.length > 0) {
+            // console.log(toJS(this.props.store.Leads.leads));
+            // const leadsToArray = toJS(this.props.store.Leads.leads)
+            // console.log(leadsToArray)
+
+            activities = this.props.store.Activities.activities.map((item, i) => {
+                return (
+                    <ActivitiesCard key={item.id} config={item}/>
+                )
+            })
+        }
         return (
             <div className="Activities">
                 <section className="border-bottom">
@@ -21,6 +47,18 @@ class Activities extends Component {
                         <DateRangeSelect />
                     </SearchForm>
                 </section>
+                <section className="border-bottom">
+                    <div className="p-2r d-flex justify-content-start">
+                        <div className="row">
+                        <div className="col-12"><a className="btn btn-light" href="#activityRangeCreateModal" data-toggle="modal" data-target="#activityRangeCreateModal">Create an activity range</a></div>
+                        </div>
+                    </div>
+                </section>
+                <div className="p-2r">
+                    <div className="row">
+                        {activities}
+                    </div>
+                </div>
             </div>
         );
     }
