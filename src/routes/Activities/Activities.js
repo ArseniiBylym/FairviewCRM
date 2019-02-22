@@ -14,8 +14,11 @@ import { observer, inject } from 'mobx-react';
 class Activities extends Component {
 
     componentDidMount = async () => {
-        Activities.filteredActivitiesBySearch = []
-        const result = await ActivitiesActions.fetchActivities();
+       await ActivitiesActions.fetchActivities();
+    }
+
+    componentWillUnmount = () => {
+        ActivitiesActions.clearSearchField();
     }
     
     render() {

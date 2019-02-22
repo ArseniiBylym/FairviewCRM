@@ -42,4 +42,8 @@ export class ActivitiesActionsClass {
         ActivitiesStore.searchField = value.trim().toLowerCase();
     }
 
+    @action clearSearchField() {
+        ActivitiesStore.searchField = '';
+    }
+
 }
