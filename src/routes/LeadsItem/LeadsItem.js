@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './LeadsItem.scss';
 import { observer, inject } from 'mobx-react';
 import { UserActions, LeadsActions } from '../../actions/AllActions'
+import LeadSidebar from './LeadSidebar/LeadSidebar';
+import LeadContent from './LeadContent/LeadContent';
 
 @inject('store')
 @observer
@@ -17,9 +19,9 @@ class LeadsItem extends Component {
         const {currentLead} = this.props.store.Leads;
         
         return (
-            <div className="LeadsItem">
-            Leads Item
-            {currentLead.legalBusName}
+            <div className="LeadsItem layout-wrapper">
+                <LeadSidebar config={currentLead} />
+                <LeadContent header={currentLead.legalBusName}/>
             </div>
         );
     }

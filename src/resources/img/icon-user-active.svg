@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon/User</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icon/User" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-28" x="0" y="0" width="24" height="24"></rect>
+        <path d="M21,21 L21,19 C21,16.2385763 18.7614237,14 16,14 L8,14 C5.23857625,14 3,16.2385763 3,19 L3,21 C3,21.5522847 3.44771525,22 4,22 C4.55228475,22 5,21.5522847 5,21 L5,19 C5,17.3431458 6.34314575,16 8,16 L16,16 C17.6568542,16 19,17.3431458 19,19 L19,21 C19,21.5522847 19.4477153,22 20,22 C20.5522847,22 21,21.5522847 21,21 Z" id="Shape" fill="#95A2C7" fill-rule="nonzero"></path>
+        <path d="M12,12 C9.23857625,12 7,9.76142375 7,7 C7,4.23857625 9.23857625,2 12,2 C14.7614237,2 17,4.23857625 17,7 C17,9.76142375 14.7614237,12 12,12 Z M12,10 C13.6568542,10 15,8.65685425 15,7 C15,5.34314575 13.6568542,4 12,4 C10.3431458,4 9,5.34314575 9,7 C9,8.65685425 10.3431458,10 12,10 Z" id="Oval" fill="#95A2C7" fill-rule="nonzero"></path>
+        <rect id="Rectangle-22-Copy-36" fill="#22E6D5" x="18" y="0" width="6" height="6" rx="3"></rect>
+    </g>
+</svg>

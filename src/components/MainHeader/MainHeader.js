@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './MainHeader.scss';
 import { Routes } from '../../utils/constansts';
 import NavMenu from '../NavMenu/NavMenu';
@@ -7,6 +7,7 @@ import { UserActions } from '../../actions/AllActions';
 import { withRouter } from "react-router";
 import { observer, inject } from 'mobx-react';
 import LeadTab from '../LeadTab/LeadTab';
+import mainLogo from '../../resources/img/logo.png';
 
 
 @inject('store')
@@ -41,10 +42,10 @@ class MainHeader extends Component {
                         </ul>
                     </div>
                 </div>
-                <div className="logo">
-                    <NavLink className="mainLinks" to={Routes.LEADS} activeClassName="active">
-                        <div className="logo-demo">Fairview</div>
-                    </NavLink>    
+                <div className="logo mainLogo">
+                    <Link className="mainLinks" to={Routes.LEADS} activeClassName="active">
+                        <div className="logo-demo"><img className="mainLogoImg" src={mainLogo} alt="mainLogo" /></div>
+                    </Link>    
                 </div>
                 <ul className="epics-menu epics-collapsible border-right">
                     <NavMenu />

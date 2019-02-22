@@ -38,12 +38,41 @@ export class ActivitiesActionsClass {
         };
     }
 
+    @reaction(() => ActivitiesStore.searchField,
+        (value) => {
+            console.log(value)
+        }
+    )
+
     @action searchFieldHandler(value) {
-        ActivitiesStore.searchField = value.trim().toLowerCase();
+        ActivitiesStore.searchField = value
+
+        const filteredArr = ActivitiesStore.activities.filter(item => {
+            ActivitiesStore.searchField = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
+            return item.activityType.search(ActivitiesStore.searchField) === 0
+            // return item.activityType.toLowerCase().indexOf(editedStr) !== -1
+        })
+        
+        if(filteredArr && ActivitiesStore.searchField) {
+            ActivitiesStore.filteredActivitiesBySearch = filteredArr
+        } else if (!filteredArr && ActivitiesStore.searchField) {
+            ActivitiesStore.filteredActivitiesBySearch = []
+        }
     }
 
-    @action clearSearchField() {
-        ActivitiesStore.searchField = '';
-    }
+    // @action filterActivitiesBySearch(inputText) {
+    //     if(!inputText) {
+    //         ActivitiesStore.filteredActivitiesBySearch = []
+    //         return
+    //     }
+
+    //     // const filteredArr = ActivitiesStore.activities.filter(item => {
+    //     //     // const editedInputText = inputText.charAt(0).toUpperCase() + inputText.slice(1).toLowerCase()
+    //     //     return item.activityType.search(ActivitiesStore.searchField) === 0
+    //     // })
+
+      
+    //     console.log(ActivitiesStore)
+    // }
 
 }
