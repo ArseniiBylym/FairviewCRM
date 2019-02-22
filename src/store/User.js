@@ -11,6 +11,6 @@ export class User {
 
     @observable accessToken = null
 
-    @observable isLoged = false;
-    // @observable isLoged = true;
+    // @observable isLoged = false;
+    @observable isLoged = true;
 }

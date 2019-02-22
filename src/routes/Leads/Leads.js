@@ -8,13 +8,14 @@ import { observer, inject } from 'mobx-react';
 import { UserActions, LeadsActions } from '../../actions/AllActions'
 import LeadsCard from '../../components/LeadsCard/LeadsCard';
 import { toJS } from 'mobx'
+import ModalTemp from '../../components/ModalTemp/ModalTemp'
 
 @inject('store')
 @observer
 class Leads extends Component {
 
     componentDidMount = async () => {
-        const result = await LeadsActions.fetchLeads();
+        // const result = await LeadsActions.fetchLeads();
     }
 
 
@@ -52,6 +53,14 @@ class Leads extends Component {
                         {leads}
                     </div>
                 </div>
+                {/* <ModalTemp header="Edit details" id="detailsModal" withRemoveButton={false}>
+                </ModalTemp>
+                <ModalTemp header="Edit address" id="addressModal" withRemoveButton={false}>
+                </ModalTemp>
+                <ModalTemp header="Edit contacts" id="contactsModal" withRemoveButton={false}>
+                </ModalTemp>
+                <ModalTemp header="Create contact person" id="createPersonContacts" withRemoveButton={false}>
+                </ModalTemp> */}
             </div>
         );
     }

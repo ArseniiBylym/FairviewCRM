@@ -1,30 +1,60 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import LeadSidebarCard from './LeadSidebarCard/LeadSidebarCard';
 import SidebarDetailsRow from '../../../components/SidebarDetailsRow/SidebarDetailsRow';
 import SidebarContactPersonItem from '../../../components/SidebarContactPersonItem/SidebarContactPersonItem';
+import { ModalActions, LeadsActions } from '../../../actions/AllActions'
+import { inject, observer } from 'mobx-react';
+import ModalTemp from '../../../components/ModalTemp/ModalTemp'
+import Input from '../../../components/Form/Input';
+import Select from '../../../components/Form/Select';
+import Checkbox from '../../../components/Form/Checkbox';
 
+
+@inject('store')
+@observer
 class LeadSidebar extends Component {
+
+    editDbaHandler = e => {
+        LeadsActions.editCurrentLead('dba', e.target.value)
+    }
+
+    editDetailsData = () => {
+        ModalActions.configModalData({
+            header: 'Edit details',
+            withRemoveButton: false,
+            content:<Fragment>
+                        <Input config={{
+                            label: 'DBA', 
+                            value: this.props.store.Leads.currentLead.dba,
+                            onChange: this.editDbaHandler
+                        }}/>
+                    </Fragment>
+        })
+    }
+
+
+
     render() {
         const {legalBusName, license, plAddress1, plCity, plState, plZipcode, plPhone, plFax, plEmail, contactLName, contactFName, contactMInitial, 
             contactTitle, contactPhone, contactExt, contactEmail, salesReps } = this.props.config;
         return (
             <div className="LeadSidebar page-sidebar">
                 <div className="position-sticky-0">
-                    <LeadSidebarCard header='Details'>
+                    <LeadSidebarCard withBorder={true} withEditButton={true} relatedModalId="detailsModal" editHandler={this.editDetailsData} header='Details'>
                         <SidebarDetailsRow name='Legal' value={legalBusName} />
                         <SidebarDetailsRow name='Rep' value={null} />
                         <SidebarDetailsRow name='Group' value={null} />
                         <SidebarDetailsRow name='Type' value={null} />
                         <SidebarDetailsRow name='License' value={license} />
                     </LeadSidebarCard>
-                    <LeadSidebarCard header='Address'>
+                    <LeadSidebarCard withBorder={true} withEditButton={true} relatedModalId="addressModal" header='Address'>
                         <div className="row">
                             <div className="col-12">
                                 <div className="c-gray-500">{`${plAddress1}, ${plCity}, ${plState}, ${plZipcode}, ${plPhone}, ${plFax}, ${plEmail}`}</div>
                             </div>
                         </div>
                     </LeadSidebarCard>
-                    <LeadSidebarCard header='Contact'>
+                    <LeadSidebarCard withBorder={true} withEditButton={true} relatedModalId="contactsModal" header='Contact'>
                         <div className="row">
                             <div className="col-12">
                                 <div className="c-gray-500">{`P. ${contactPhone} (ext. ${contactExt})`}</div>
@@ -33,7 +63,7 @@ class LeadSidebar extends Component {
                             </div>
                         </div>
                     </LeadSidebarCard>
-                    <LeadSidebarCard header='Contact persons'>
+                    <LeadSidebarCard withBorder={false} withEditButton={false} header='Contact persons'>
                         <div className="col-12 mb-4">
                             {salesReps.map(item => (
                                 <SidebarContactPersonItem key={item.id} isActive={true} name={item.name} position={null} phone={null} />
@@ -43,12 +73,54 @@ class LeadSidebar extends Component {
                         <div className="col-12">
                             <div className="px-3">
                                 <div className="mx-3">
-                                    <button className="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#leadContactPersonCreateModal">Add a Contact</button>
+                                    <button className="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#createPersonContacts">Add a Contact</button>
                                 </div>
                             </div>
                         </div>
                     </LeadSidebarCard>
                 </div>
+                <ModalTemp header="Edit details" id="detailsModal" withRemoveButton={false}>
+                    <Input label='DBA' value={this.props.store.Leads.currentLead.dba}  />
+                    <Input label='Legal Business Name' value={this.props.store.Leads.currentLead.legalBusName}  />
+                    <Input label='Business Group' value={``}  />
+                    <div class="form-group">
+                      <button class="btn btn-light" type="button">Manage Business Groups</button>
+                    </div>
+                    <Select label='Type' 
+                        options={[
+                            {value: 'Chain', selected: true},
+                            {value: 'Distributor', selected: false},
+                        ]} 
+                    />
+                     <Select label='Licence Type' 
+                        options={[
+                            {value: 'Precursor', selected: true},
+                            {value: 'DEA', selected: false},
+                        ]} 
+                    />
+                </ModalTemp>
+                <ModalTemp header="Edit address" id="addressModal" withRemoveButton={false}>
+                    <Input label='Address 1' value={this.props.store.Leads.currentLead.plAddress1} />
+                    <Input label='Address 2' value={this.props.store.Leads.currentLead.plAddress2} />
+                    <Input label='City' value={this.props.store.Leads.currentLead.plCity} />
+                    <Input label='State' value={this.props.store.Leads.currentLead.plState} />
+                    <Input label='Zip-code' value={this.props.store.Leads.currentLead.plZipcode} />
+                </ModalTemp>
+                <ModalTemp header="Edit contacts" id="contactsModal" withRemoveButton={false}>
+                    <Input label='Phone number' value={this.props.store.Leads.currentLead.plPhone} />
+                    <Input label='Phone number extension' value={this.props.store.Leads.currentLead.plExt} />
+                    <Input label='Fax number' value={this.props.store.Leads.currentLead.plFax} />
+                </ModalTemp>
+                <ModalTemp header="Create contact person" id="createPersonContacts" withRemoveButton={false}>
+                    <Input label='First name' value='' />
+                    <Input label='Middle name' value='' />
+                    <Input label='Last name' value='' />
+                    <Input label='Title' value='' />
+                    <Input label='Office phone' value='' />
+                    <Input label='Mobile phone' value='' />
+                    <Input label='Fax' value='' />
+                    <Checkbox label='Primary contact' checked={false} />
+                </ModalTemp>
             </div>
         );
     }

@@ -10916,3 +10916,8 @@ body {
 .mainLogoImg {
   width: 140px;
 }
+.formGroup-alignStart{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
