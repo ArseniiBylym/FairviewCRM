@@ -14,22 +14,18 @@ import { observer, inject } from 'mobx-react';
 class Activities extends Component {
 
     componentDidMount = async () => {
-        Activities.filteredActivitiesBySearch = []
-        const result = await ActivitiesActions.fetchActivities();
+       await ActivitiesActions.fetchActivities();
+    }
+
+    componentWillUnmount = () => {
+        ActivitiesActions.clearSearchField();
     }
     
     render() {
-        console.log(this.props.store.Activities.filteredActivitiesBySearch);
 
         let activities = null;
-        if (this.props.store.Activities.searchField) {
-            activities = this.props.store.Activities.filteredActivitiesBySearch.map((item) => {
-                return (
-                    <ActivitiesCard key={item.id} config={item}/>
-                )
-            })
-        } else {
-            activities = this.props.store.Activities.activities.map((item) => {
+        if(this.props.store.Activities.filteredActivities.length > 0) {
+            activities = this.props.store.Activities.filteredActivities.map(item => {
                 return (
                     <ActivitiesCard key={item.id} config={item}/>
                 )
