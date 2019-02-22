@@ -68,4 +68,22 @@ export class LeadsActionsClass {
 
     } 
 
+    @action async createNewContact(data) {
+
+        const body = JSON.stringify({
+            ...data,
+            providerId: LeadsStore.currentLead.databaseId
+        })
+        console.log(body);
+        // const token = UserStore.accessToken
+        // const result = await fetchFromApi(URL_PATH.PROVIDER_CONTACT, {
+        //     method: 'post',
+        //     headers: {
+        //         Authorization: `Bearer ${token}`,
+        //         "Content-Type": "application/json" 
+        //     },
+        //     data: body
+        // })
+    }
+
 }

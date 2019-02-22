@@ -9,7 +9,7 @@ class LeadContent extends Component {
                <section className="border-bottom">
                     <div className="p-2r">
                         <div className="row">
-                            <div className="col-2">
+                            <div className="col-6">
                                 <h1 className="t-900-h mb-0">{this.props.header}</h1>
                             </div>
                         </div>

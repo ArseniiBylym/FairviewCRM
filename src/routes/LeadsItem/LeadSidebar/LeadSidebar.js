@@ -14,6 +14,18 @@ import Checkbox from '../../../components/Form/Checkbox';
 @observer
 class LeadSidebar extends Component {
 
+    state = {
+        createPersonContact: {
+            firstName: '',
+            lastName:'',
+            middleName: '',
+            title: '',
+            officePhone: '',
+            fax: '',
+            emailAddress: ''
+        }
+    }
+
     editDbaHandler = e => {
         LeadsActions.editCurrentLead('dba', e.target.value)
     }
@@ -30,6 +42,9 @@ class LeadSidebar extends Component {
                         }}/>
                     </Fragment>
         })
+    }
+    componentDidUpdate = () => {
+        console.log(this.state);
     }
 
 
@@ -111,19 +126,48 @@ class LeadSidebar extends Component {
                     <Input label='Phone number extension' value={this.props.store.Leads.currentLead.plExt} />
                     <Input label='Fax number' value={this.props.store.Leads.currentLead.plFax} />
                 </ModalTemp>
-                <ModalTemp header="Create contact person" id="createPersonContacts" withRemoveButton={false}>
-                    <Input label='First name' value='' />
-                    <Input label='Middle name' value='' />
-                    <Input label='Last name' value='' />
-                    <Input label='Title' value='' />
-                    <Input label='Office phone' value='' />
-                    <Input label='Mobile phone' value='' />
-                    <Input label='Fax' value='' />
+                <ModalTemp saveAction={this.saveContactPersonHandler} header="Create contact person" id="createPersonContacts" withRemoveButton={false}>
+                    <Input onChange={this.createContactPersonHandler} name="firstName" label='First name' value='' />
+                    <Input onChange={this.createContactPersonHandler} name="middleName" label='Middle name' value='' />
+                    <Input onChange={this.createContactPersonHandler} name="lastName" label='Last name' value='' />
+                    <Input onChange={this.createContactPersonHandler} name="title" label='Title' value='' />
+                    <Input onChange={this.createContactPersonHandler} name="officePhone" label='Office phone' value='' />
+                    <Input onChange={this.createContactPersonHandler} name="fax" label='Fax' value='' />
                     <Checkbox label='Primary contact' checked={false} />
                 </ModalTemp>
             </div>
         );
     }
+
+    createContactPersonHandler = e => {
+        this.setState({
+            createContact: {
+                ...this.state.createContact,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+    saveContactPersonHandler = () => {
+        console.log(this.state.createContact)
+        if(!this.state.createContact.firstName || !this.state.createContact.lastName) return false;
+        LeadsActions.createNewContact(this.state.createContact);
+    }
+
+    // editMainContactHandler = e => {
+    //     this.setState({
+    //         createPersonContact: {
+    //             ...this.state.createPersonContact,
+    //             [e.target.name]: e.target.value
+    //         }
+    //     })
+    // }
+
+    // saveMainContactHandler = () => {
+    //     console.log(this.state.createPersonContact)
+    //     if(!this.state.createPersonContact.firstName || !this.state.createPersonContact.lastName) return false;
+    //     LeadsActions.createNewContact(this.state.createPersonContact);
+    // }
+
 }
 
 export default LeadSidebar;

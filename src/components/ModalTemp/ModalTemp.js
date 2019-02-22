@@ -31,7 +31,7 @@ class ModalTemp extends Component {
                             </div>}
                             <div className="ml-auto">
                                 <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
-                                <button onClick={data.saveButtonHandler} class="btn btn-primary ml-2" type="button">{data.saveButtonTitle ? data.saveButtonTitle : 'Save'}</button>
+                                <button onClick={data.saveAction} class="btn btn-primary ml-2" data-dismiss="modal" type="button">{data.saveButtonTitle ? data.saveButtonTitle : 'Save'}</button>
                             </div>
                         </div>
                     </div>

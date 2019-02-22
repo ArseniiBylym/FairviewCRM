@@ -15,7 +15,7 @@ import ModalTemp from '../../components/ModalTemp/ModalTemp'
 class Leads extends Component {
 
     componentDidMount = async () => {
-        // const result = await LeadsActions.fetchLeads();
+        const result = await LeadsActions.fetchLeads();
     }
 
 

@@ -83,12 +83,12 @@ const testCurrentLead = {
 }
 
 export class Leads {
-    // @observable leads = [];
-    @observable leads = testLeads;
+    @observable leads = [];
+    // @observable leads = testLeads;
     @observable totalLeadsAmount = null;
     @observable leadsFetched = false;
 
     @observable activeLeads = [];
-    // @observable currentLead = null;
-    @observable currentLead = testCurrentLead;
+    @observable currentLead = null;
+    // @observable currentLead = testCurrentLead;
 }
