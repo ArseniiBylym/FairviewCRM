@@ -21,7 +21,7 @@ class SearchForm extends Component {
                             className="form-control"
                             id="filter-search"
                             onChange={(e) => {
-                              ActivitiesActions.searchFieldHandler(e.target.value.trim())
+                              ActivitiesActions.searchFieldHandler(e.target.value)
                               // ActivitiesActions.searchFieldHandler(e.target.value)
                             }}
                           />

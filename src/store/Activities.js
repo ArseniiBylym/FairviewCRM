@@ -7,10 +7,14 @@ export class Activities {
     @observable activitiesFetched = false;
     @observable searchField = '';
 
-   
-    // @reaction(() => this.searchField,
-    //     (value) => {
-    //         console.log(value)
-    //     }
-    // )
+    @computed get filteredActivities() {
+        if (!this.searchField) {
+            return this.activities;
+        } else {
+            return this.activities.filter((item, i) => {
+                return item.activityType.trim().toLowerCase().indexOf(this.searchField) !== -1;
+            })
+        }
+    }
+
 }
