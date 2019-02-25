@@ -2,15 +2,23 @@ import React, { Component } from 'react';
 import Fragment from 'react';
 import dotIcon from '../../resources/img/icon-dot-danger.svg'
 import moment from 'moment';
+import { withRouter } from "react-router";
 
-class Card extends Component {
+class PricingCard extends Component {
+
+    clickCardHandler = (e) => {
+      e.preventDefault();
+      this.props.history.push(`/pricing-requests/${this.props.config.id}`)
+    }
+
     render() {
+      console.log(this.props.config)
 
       const {cardcode, complete, createdAt, createdByUser, createdByUserId, id, note, provider, providerId, updatedAt} = this.props.config;
         return (
             <div className="col-sm-6 col-lg-4 col-xl-3">
-            <div className="c-card c-card-shadow p-0">
-              <div className="p-3"><a href="pricing-request.html">
+            <div onClick={this.clickCardHandler} className="c-card c-card-shadow p-0">
+              <div className="p-3"><a href="#">
                   <div className="t-600-h text-truncate">{provider.legalBusName}</div></a>
                 <div className="t-400 c-gray-400">#{id}, {moment(updatedAt).format('MMM, Do, hha')}</div>
               </div>
@@ -26,4 +34,4 @@ class Card extends Component {
         )}
 }
 
-export default Card;
+export default withRouter(PricingCard);

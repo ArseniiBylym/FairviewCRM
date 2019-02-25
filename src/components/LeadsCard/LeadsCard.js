@@ -22,7 +22,6 @@ class LeadsCard extends Component {
 
     render() {
         const { databaseId, providerId, legalBusName, dba, plCity, plState, plZipcode, plPhone, lastCompletedActivity } = this.props.config;
-        console.log(this.props);
 
         return (
             <div className="LeadsCard col-sm-6 col-lg-4 col-xl-3">

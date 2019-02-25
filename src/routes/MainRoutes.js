@@ -13,6 +13,7 @@ import { observer, inject } from 'mobx-react';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PageNotFound from '../routes/PageNotFound/PageNotFound';
 import Modal from '../components/Modal/Modal'
+import PricingRequestItem from './PricingRequestItem/PricingRequestItem'
 
 @inject('store')
 @observer
@@ -25,7 +26,8 @@ class MainRoutes extends Component {
                         <Route exact path={Routes.LEADS} component={Leads} />
                         <Route path={Routes.LEADS_ITEM} component={LeadsItem} />
                         <Route exact path={Routes.ACTIVITES} component={Activities} />
-                        <Route path={Routes.PRICING_REQUESTS} component={PricingRequests} />
+                        <Route exact path={Routes.PRICING_REQUESTS} component={PricingRequests} />
+                        <Route path={Routes.PRICING_REQUESTS_ITEM} component={PricingRequestItem} />
                         <Route path='/' component={PageNotFound} />
                     </Switch>
                     {/* <Modal/> */}
