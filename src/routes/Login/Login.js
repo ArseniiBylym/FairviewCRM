@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './Login.scss';
 import { UserActions } from '../../actions/AllActions'
+import { User } from '../../store';
+import { observer, inject } from 'mobx-react';
 
+@inject('store')
+@observer
 class Login extends Component {
 
     state = {
@@ -17,16 +21,18 @@ class Login extends Component {
 
     loginUser = async(e) => {
         e.preventDefault();
-        if (!this.state.name || !this.state.password) return 
+        if (!this.state.name || !this.state.password) {
+            UserActions.setLoginError('All fields are required')    
+            return 
+        }
         await UserActions.login(this.state.name, this.state.password);
         this.props.history.push('/leads')
     }
 
     keyUpHandler = (e) => {
-        console.log('hellog')
         const keyCode = e.keyCode;
         if(keyCode === 13) {
-            // e.preventDefault();
+            e.preventDefault();
             this.loginUser(e);
         }
     }
@@ -50,6 +56,9 @@ class Login extends Component {
                                             <input onKeyUp={this.keyUpHandler} onChange={this.inputHandler('password')} name="password" type="password" className="form-control" />
                                         </label>
                                     </div>
+                                    {this.props.store.User.loginError && 
+                                        <p className="text-danger">{this.props.store.User.loginError}</p>
+                                    }
                                     <button onClick={this.loginUser} className="btn btn-primary col-6 offset-3">Login</button>
                                 {/* </form> */}
                             </div>

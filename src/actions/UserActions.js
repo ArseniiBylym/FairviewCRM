@@ -36,10 +36,13 @@ export class UserActionsClass {
                 UserStore.accessToken = data.accessToken;
                 UserStore.isLoged = true;
 
+                UserStore.loginError = '';
+
                 return result
             }
 
         } catch (err) {
+            UserStore.loginError = 'Wrong name or password'
             console.log(err);
         }
 
@@ -49,5 +52,9 @@ export class UserActionsClass {
     @action async logout() {
         console.log('You are loged out')
         UserStore.isLoged = false;
+    }
+
+    @action setLoginError(message) {
+        UserStore.loginError = message
     }
 }

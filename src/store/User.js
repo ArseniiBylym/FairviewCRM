@@ -12,5 +12,8 @@ export class User {
     @observable accessToken = null
 
     @observable isLoged = false;
+    @observable loginError = '';
+
+
     // @observable isLoged = true;
 }
