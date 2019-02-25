@@ -1,4 +1,4 @@
-import { observable, computed, when } from 'mobx';
+import { observable, computed } from 'mobx';
 
 export class Activities {
 
@@ -8,7 +8,7 @@ export class Activities {
     @observable searchField = '';
     @observable types = [];
     @observable filterByType = 'All';
-    @observable datePickerDate = [];
+    @observable datePickerDate = ["1/1/2016", "1/1/2020"];
 
     @computed get filteredActivities() {
         return this.activities.filter((item, i) => {

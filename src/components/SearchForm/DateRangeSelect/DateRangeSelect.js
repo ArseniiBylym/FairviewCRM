@@ -9,7 +9,7 @@ class DateRangeSelect extends Component {
             <div className="form-group">
               <label htmlFor="filter-date-range">Date Range</label>
               <div className="input-group">
-                <input className="form-control date-range-picker" type="text" id="filter-date-range" value="1/1/2014 - 3/1/2014" />
+                <input className="form-control date-range-picker" type="text" id="filter-date-range" value="1/1/2016 - 1/1/2020" />
                 <div className="input-group-append">
                 <span className="input-group-text"><img src={iconCalendar} alt="Calendar icon"/></span>
                 </div>

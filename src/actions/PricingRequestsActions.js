@@ -1,5 +1,6 @@
 import { action } from 'mobx';
 import { PricingRequestsStore, UserStore } from '../store/AllStores';
+import moment from 'moment'
 import { fetchFromApi, URL_PATH } from '../api/api'
 
 export class PricingRequestsActionsClass {
@@ -39,5 +40,18 @@ export class PricingRequestsActionsClass {
         if(data) {
             PricingRequestsStore.currentRequest = data;
         }
+    }
+
+    @action setDatePickerDateField(startData, endData) {
+        PricingRequestsStore.datePickerDate = [moment().format(startData._i.slice(0, 3).join('/')), moment().format(endData._i.slice(0, 3).join('/'))]
+    }
+
+    @action searchFieldHandler(value) {
+        console.log('Pricing')
+        PricingRequestsStore.searchField = value.trim().toLowerCase();
+    }
+
+    @action clearSearchField() {
+        PricingRequestsStore.searchField = '';
     }
 }

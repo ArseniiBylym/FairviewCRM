@@ -90,5 +90,18 @@ export class Leads {
 
     @observable activeLeads = [];
     @observable currentLead = null;
+    @observable searchField = '';
+    @observable datePickerDate = ["1/1/2016", "1/1/2020"];
     // @observable currentLead = testCurrentLead;
+
+    @computed get filteredLeads() {
+        return this.leads.filter((item, i) => {
+
+                console.log(item.legalBusName)
+                const leadItem = item.legalBusName.trim().toLowerCase().indexOf(this.searchField)
+                // const a = Date.parse(this.datePickerDate[0]) < Date.parse(item.lastCompletedActivity.createdAt.split('T')[0]) ? Date.parse(item.lastCompletedActivity.createdAt.split('T')[0]) : Date.parse(this.datePickerDate[0])
+                
+                return leadItem !== -1/*  && a < Date.parse(this.datePickerDate[1]) */
+        })
+    }
 }

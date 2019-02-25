@@ -71,7 +71,6 @@ export class ActivitiesActionsClass {
 
     @action setDatePickerDateField(startData, endData) {
         ActivitiesStore.datePickerDate = [moment().format(startData._i.slice(0, 3).join('/')), moment().format(endData._i.slice(0, 3).join('/'))]
-        // ActivitiesStore.datePickerDate[1] = moment().format(endData._i.slice(0, 3).join('/'))
     }
 
     @action searchFieldHandler(value) {

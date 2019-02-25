@@ -74,4 +74,12 @@ export class LeadsActionsClass {
         // })
     }
 
+    @action searchFieldHandler(value) {
+        LeadsStore.searchField = value.trim().toLowerCase();
+    }
+
+    @action clearSearchField() {
+        LeadsStore.searchField = '';
+    }
+
 }

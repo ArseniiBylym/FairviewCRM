@@ -24,6 +24,7 @@ class Activities extends Component {
     }
     
     render() {
+        console.log(this.displayName)
         let activities = null;
 
         if(this.props.store.Activities.filteredActivities.length > 0) {
@@ -45,10 +46,10 @@ class Activities extends Component {
                             </div>
                         </div>
                     </div>
-                    <SearchForm>
+                    <SearchForm searchAction={(value) => ActivitiesActions.searchFieldHandler(value)}>
                         <FilterSelect title={"Type"} id={"filter-type"} options={types}/>
                         <div className="col-xl-3 col-lg-6">
-                            <DateRangePicker startDate="1/1/2014" endDate="3/1/2014" className="col-xl-3 col-lg-6" onApply={(e, picker) => ActivitiesActions.setDatePickerDateField(picker.startDate, picker.endDate)}>
+                            <DateRangePicker startDate="1/1/2016" endDate="1/1/2020" className="col-xl-3 col-lg-6" onApply={(e, picker) => ActivitiesActions.setDatePickerDateField(picker.startDate, picker.endDate)}>
                                 <DateRangeSelect />
                             </DateRangePicker>
                         </div>

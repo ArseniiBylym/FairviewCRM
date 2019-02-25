@@ -16,22 +16,25 @@ import Spinner from '../../components/Spinner/Spinner';
 class Leads extends Component {
 
     componentDidMount = async () => {
-        const result = await LeadsActions.fetchLeads();
+        await LeadsActions.fetchLeads();
     }
+ 
+     componentWillUnmount = () => {
+        LeadsActions.clearSearchField();
+     }
 
 
     render() {
         console.log(this.props.store);
          
         let leads = null;
-        if (this.props.store.Leads.leads && this.props.store.Leads.leads.length > 0) {
-            leads = this.props.store.Leads.leads.map((item, i) => {
+        if (this.props.store.Leads.leads.length > 0 && this.props.store.Leads.filteredLeads.length > 0) {
+            leads = this.props.store.Leads.filteredLeads.map((item, i) => {
                 return (
                     <LeadsCard key={item.databaseId} config={item}/>
                 )
             })
         }
-
 
         return (
             <div className="Leads">
@@ -43,7 +46,7 @@ class Leads extends Component {
                             </div>
                         </div>
                     </div>
-                    <SearchForm>
+                    <SearchForm searchAction={(value) => LeadsActions.searchFieldHandler(value)}>
                         <FilterSelect title={"Group"} id={"filter-group"}/>
                         <FilterSelect title={"Type"} id={"filter-type"}/>
                         <FilterCheckbox />

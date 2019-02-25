@@ -5,7 +5,7 @@ import DateRangeSelect from '../../components/SearchForm/DateRangeSelect/DateRan
 import FilterSelect from '../../components/SearchForm/FilterSelect/FilterSelect'
 import PricingCard from '../../components/PricingCard/PricingCard';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
-import { PricingRequestsActions } from '../../actions/AllActions'
+import { PricingRequestsActions } from '../../actions/AllActions';
 import { observer, inject } from 'mobx-react';
 import Spinner from '../../components/Spinner/Spinner'
 
@@ -15,16 +15,18 @@ class PricingRequests extends Component {
 
     componentDidMount = async () => {
        await PricingRequestsActions.fetchRequests();
+       
     }
 
+    componentWillUnmount = () => {
+        PricingRequestsActions.clearSearchField();
+    }
 
     render() {
-
-        console.log(this.props.store);
-         
         let requests = null;
-        if (this.props.store.PricingRequests.requests && this.props.store.PricingRequests.requests.length > 0) {
-            requests = this.props.store.PricingRequests.requests.map((item, i) => {
+
+        if (this.props.store.PricingRequests.filteredRequests.length > 0) {
+            requests = this.props.store.PricingRequests.filteredRequests.map((item, i) => {
                 return (
                     <PricingCard key={item.databaseId} config={item}/>
                 )
@@ -41,10 +43,9 @@ class PricingRequests extends Component {
                             </div>
                         </div>
                     </div>
-                    <SearchForm>
+                    <SearchForm searchAction={(value) => PricingRequestsActions.searchFieldHandler(value)}>
                         <FilterSelect title={"Status"} id={"filter-status"}/>
-                        <DateRangeSelect />
-                        <DateRangePicker startDate="1/1/2014" endDate="3/1/2014" className="col-xl-3 col-lg-6" onApply={(e, picker) => PricingRequestsActions.setDatePickerDateField(picker.startDate, picker.endDate)}>
+                        <DateRangePicker startDate="1/1/2016" endDate="1/1/2020" className="col-xl-3 col-lg-6" onApply={(e, picker) => PricingRequestsActions.setDatePickerDateField(picker.startDate, picker.endDate)}>
                             <DateRangeSelect />
                         </DateRangePicker>
                     </SearchForm>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './SearchForm.scss';
-import { ActivitiesActions } from '../../actions/AllActions'
+import { ActivitiesActions, PricingRequestsActions } from '../../actions/AllActions'
 import { inject, observer } from 'mobx-react';
 
 @inject('store')
@@ -21,7 +21,8 @@ class SearchForm extends Component {
                             className="form-control"
                             id="filter-search"
                             onChange={(e) => {
-                              ActivitiesActions.searchFieldHandler(e.target.value)
+                              this.props.searchAction(e.target.value)
+                              // ActivitiesActions.searchFieldHandler(e.target.value)
                             }}
                           />
                         </div>
