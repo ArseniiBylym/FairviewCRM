@@ -6,6 +6,7 @@ import FilterSelect from '../../components/SearchForm/FilterSelect/FilterSelect'
 import PricingCard from '../../components/PricingCard/PricingCard';
 import { PricingRequestsActions } from '../../actions/AllActions'
 import { observer, inject } from 'mobx-react';
+import Spinner from '../../components/Spinner/Spinner'
 
 @inject('store')
 @observer
@@ -46,7 +47,7 @@ class PricingRequests extends Component {
                 </section>
                 <div className="p-2r">
                     <div className="row">
-                        {requests}
+                        {requests ? requests : <Spinner />}
                     </div>
                 </div>
             </div>

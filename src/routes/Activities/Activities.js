@@ -7,7 +7,7 @@ import { ActivitiesActions } from '../../actions/AllActions'
 import { UserActions, LeadsActions } from '../../actions/AllActions'
 import ActivitiesCard from '../../components/ActivitiesCard/ActivitiesCard';
 import { observer, inject } from 'mobx-react';
-
+import Spinner from '../../components/Spinner/Spinner'
 
 @inject('store')
 @observer
@@ -57,7 +57,7 @@ class Activities extends Component {
                 </section>
                 <div className="p-2r">
                     <div className="row">
-                        {activities}
+                        {activities ? activities : <Spinner />}
                     </div>
                 </div>
             </div>
