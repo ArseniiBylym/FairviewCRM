@@ -38,6 +38,35 @@ export class ActivitiesActionsClass {
         };
     }
 
+    @action async fetchTypes() {
+        console.log('SAFSDFSFD')
+        const token = UserStore.accessToken
+        const result = await fetchFromApi(URL_PATH.ACTIVITY_TYPE, {
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json" 
+            },
+        })
+        if (result.data) {
+            console.log(result)
+            const activitiesTypes = result.data.data.map((item, i) => {
+
+                return {
+                    id: item.id,
+                    name: item.name,
+                }
+            })
+
+            ActivitiesStore.types = activitiesTypes
+        }
+    }
+
+    @action changeType(value) {
+        ActivitiesStore.filterByType = value
+        console.log(ActivitiesStore)
+    }
+
     @action searchFieldHandler(value) {
         ActivitiesStore.searchField = value.trim().toLowerCase();
     }

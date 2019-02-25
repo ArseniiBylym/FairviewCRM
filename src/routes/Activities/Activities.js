@@ -15,6 +15,7 @@ class Activities extends Component {
 
     componentDidMount = async () => {
        await ActivitiesActions.fetchActivities();
+       !this.props.store.Activities.types.length && await ActivitiesActions.fetchTypes();
     }
 
     componentWillUnmount = () => {
@@ -33,6 +34,7 @@ class Activities extends Component {
         }
 
         console.log(this.props.store.Activities)
+        const { types } = this.props.store.Activities
         return (
             <div className="Activities">
                 <section className="border-bottom">
@@ -44,7 +46,7 @@ class Activities extends Component {
                         </div>
                     </div>
                     <SearchForm>
-                        <FilterSelect title={"Type"} id={"filter-type"}/>
+                        <FilterSelect title={"Type"} id={"filter-type"} options={types}/>
                         <DateRangeSelect />
                     </SearchForm>
                 </section>
