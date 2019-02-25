@@ -15,8 +15,11 @@ import moment from 'moment';
 class LeadsCard extends Component {
 
     leadClickHandler = () => {
-        LeadsActions.addToActiveTabs(this.props.config);
-        this.props.history.push(`/leads/${this.props.config.databaseId}`)
+        const id = this.props.config.databaseId;
+        const title = this.props.config.legalBusName;
+
+        LeadsActions.addToActiveTabs(id, title);
+        this.props.history.push(`/leads/${id}`)
     }
 
 

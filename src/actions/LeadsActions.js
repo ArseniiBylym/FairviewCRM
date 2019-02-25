@@ -14,38 +14,24 @@ export class LeadsActionsClass {
             },
         })
 
-        if(result.data.data) {
-            const leadsArray = result.data.data.map((item, i) => {
-                return {
-                    databaseId: item.databaseId,
-                    providerId: item.providerId,
-                    legalBusName: item.legalBusName,
-                    dba: item.dba,
-                    plCity: item.plCity,
-                    plState: item.plState,
-                    plZipcode: item.plZipcode,
-                    plPhone: item.plPhone,
-                    sortOrder: item.sortOrder,
-                    lastCompletedActivity: item.lastCompletedActivity
-                }
-            })
-            LeadsStore.leads = leadsArray;
+        if(result.data) {
+            LeadsStore.leads = result.data.data;
             LeadsStore.totalLeadsAmount = result.data.total;
             LeadsStore.leadsFetched = true;
         };
     }
 
-    @action addToActiveTabs(lead) {
+    @action addToActiveTabs(leadId, leadName) {
         const isAlreadyAdded = LeadsStore.activeLeads.find((item, i) => {
-             return item.databaseId === lead.databaseId;
-        })
-        if (!isAlreadyAdded) LeadsStore.activeLeads.push(lead);
-        else return;
+            return item.id === leadId;
+       })
+       if (!isAlreadyAdded) LeadsStore.activeLeads.push({id: leadId, title: leadName});
+       else return;
     }
 
     @action removeFromActiveTabs(id) {
         const filteredLeads =  LeadsStore.activeLeads.filter((item, i) => {
-            return item.databaseId !== id
+            return item.id !== id
         });
         LeadsStore.activeLeads = filteredLeads;
     }

@@ -7,7 +7,7 @@ import { ActivitiesActions } from '../../actions/AllActions'
 import { UserActions, LeadsActions } from '../../actions/AllActions'
 import ActivitiesCard from '../../components/ActivitiesCard/ActivitiesCard';
 import { observer, inject } from 'mobx-react';
-
+import Spinner from '../../components/Spinner/Spinner'
 
 @inject('store')
 @observer
@@ -50,16 +50,9 @@ class Activities extends Component {
                         <DateRangeSelect />
                     </SearchForm>
                 </section>
-                <section className="border-bottom">
-                    <div className="p-2r d-flex justify-content-start">
-                        <div className="row">
-                        <div className="col-12"><a className="btn btn-light" href="#activityRangeCreateModal" data-toggle="modal" data-target="#activityRangeCreateModal">Create an activity range</a></div>
-                        </div>
-                    </div>
-                </section>
                 <div className="p-2r">
                     <div className="row">
-                        {activities}
+                        {activities ? activities : <Spinner />}
                     </div>
                 </div>
             </div>

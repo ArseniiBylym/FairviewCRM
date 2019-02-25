@@ -9,6 +9,7 @@ import { UserActions, LeadsActions } from '../../actions/AllActions'
 import LeadsCard from '../../components/LeadsCard/LeadsCard';
 import { toJS } from 'mobx'
 import ModalTemp from '../../components/ModalTemp/ModalTemp'
+import Spinner from '../../components/Spinner/Spinner';
 
 @inject('store')
 @observer
@@ -50,7 +51,7 @@ class Leads extends Component {
                 </section>
                 <div className="p-2r">
                     <div className="row">
-                        {leads}
+                        {leads ? leads : <Spinner />}
                     </div>
                 </div>
             </div>

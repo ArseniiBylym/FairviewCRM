@@ -26,7 +26,7 @@ class MainHeader extends Component {
         if (this.props.store.Leads && this.props.store.Leads.activeLeads.length > 0) {
             openedTabs = this.props.store.Leads.activeLeads.map((item, i) => {
                 return (
-                    <LeadTab key={item.databaseId} id={item.databaseId} path={item.databaseId} title={item.legalBusName} />
+                    <LeadTab key={item.id} id={item.id} title={item.title} />
                 )
             })
         }

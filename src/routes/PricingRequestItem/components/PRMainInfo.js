@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {Component } from 'react';
 import moment from 'moment';
 import dotIcon from '../../../resources/img/icon-dot-warning.svg'
-import { NavLink } from 'react-router-dom';
+import { LeadsActions } from '../../../actions/AllActions';
+import { withRouter } from "react-router";
 
-export function PRMainInfo(props) {
-    const {lead, leadId, date, person, status, note} = props
+class PRMainInfoClass extends Component {
+
+    clickLinkHandler = (e) => {
+        e.preventDefault();
+
+        LeadsActions.addToActiveTabs(this.props.leadId, this.props.lead);
+        this.props.history.push(`/leads/${this.props.leadId}`)
+    }
+
+    render() {
+    const {lead, leadId, date, person, status, note} = this.props
     return (
         <section class="border-bottom">
             <div class="p-2r">
@@ -15,8 +25,8 @@ export function PRMainInfo(props) {
                                 <div class="c-gray-400">Lead</div>
                             </div>
                             <div class="col-8">
-                                <div class="c-gray-500 text-left">
-                                    <NavLink to={`/leads/${leadId}`}>{lead}</NavLink>
+                                <div onClick={this.clickLinkHandler} class="c-gray-500 text-left">
+                                    <a href="#">{lead}</a>
                                 </div>
                             </div>
                         </div>
@@ -61,4 +71,9 @@ export function PRMainInfo(props) {
             </div>
         </section>
     )
+    }
 }
+
+const PRMainInfo = withRouter(PRMainInfoClass);
+
+export {PRMainInfo};

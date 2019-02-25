@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react';
 import { UserActions, LeadsActions } from '../../actions/AllActions'
 import LeadSidebar from './LeadSidebar/LeadSidebar';
 import LeadContent from './LeadContent/LeadContent';
+import Spinner from '../../components/Spinner/Spinner'
 
 @inject('store')
 @observer
@@ -15,7 +16,7 @@ class LeadsItem extends Component {
 
     render() {
         console.log(this.props);
-        if(!this.props.store.Leads.currentLead) return null
+        if(!this.props.store.Leads.currentLead) return <Spinner />
         const {currentLead} = this.props.store.Leads;
         
         return (

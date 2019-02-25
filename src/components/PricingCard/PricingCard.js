@@ -25,7 +25,7 @@ class PricingCard extends Component {
               <div className="p-3 bg-gray-100">
                 <div className="media"><img className="mr-2" src={dotIcon} alt="dot icon" />
                   <div className="media-body">
-                    <div className="t-400 c-gray-400">Status: {complete ? 'Complete': 'Pending'}</div>
+                    <div className="t-400 c-gray-400">Status: {complete ? 'Completed': 'Pending'}</div>
                   </div>
                 </div>
               </div>
