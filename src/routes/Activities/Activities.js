@@ -57,7 +57,7 @@ class Activities extends Component {
                 </section>
                 <div className="p-2r">
                     <div className="row">
-                        {activities ? activities : <Spinner />}
+                        {activities ? activities : !this.props.store.Activities.activitiesFetched ? <Spinner /> : null}
                     </div>
                 </div>
             </div>

@@ -53,7 +53,7 @@ class PricingRequests extends Component {
                 </section>
                 <div className="p-2r">
                     <div className="row">
-                        {requests ? requests : <Spinner />}
+                        {requests ? requests : !this.props.store.PricingRequests.requestsFetched ? <Spinner /> : null}
                     </div>
                 </div>
             </div>

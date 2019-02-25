@@ -54,7 +54,8 @@ class Leads extends Component {
                 </section>
                 <div className="p-2r">
                     <div className="row">
-                        {leads ? leads : <Spinner />}
+
+                        {leads ? leads : !this.props.store.Leads.leadsFetched ? <Spinner /> : null}
                     </div>
                 </div>
             </div>
