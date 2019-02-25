@@ -1,28 +1,39 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import './LeadTab.scss';
 import iconClose from '../../resources/img/icon-close.svg';
 import { LeadsActions } from '../../actions/AllActions';
+import { withRouter } from "react-router";
+// import {store} from '../../store/AllStores'
+import { observer, inject } from 'mobx-react';
 
+@inject('store')
+@observer
+class LeadTab extends Component {
 
-function LeadTab ({id, title}) {
-
-    const closeHandler = (e) => {
+    closeHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        LeadsActions.removeFromActiveTabs(id);
+        LeadsActions.removeFromActiveTabs(this.props.id);
+        console.log(this.props.store.Leads.currentLead.databaseId, this.props.id)
+        if(+this.props.store.Leads.currentLead.databaseId === +this.props.id) {
+            this.props.history.push('/leads');
+        }
     }
 
-    return (
-        <li>    
-            <NavLink to={`/leads/${id}`}>
-                <div className="lead-name">{title}</div>
-                <div onClick={closeHandler} className="lead-close">
-                    <img src={iconClose} alt='' />
-                </div>
-            </NavLink>
-        </li>
-    )
+    render() {
+        return (
+            <li>    
+                <NavLink to={`/leads/${this.props.id}`}>
+                    <div className="lead-name">{this.props.title}</div>
+                    <div onClick={this.closeHandler} className="lead-close">
+                        <img src={iconClose} alt='' />
+                    </div>
+                </NavLink>
+            </li>
+        )
+    }
+
 }
 
-export default LeadTab;
+export default withRouter(LeadTab);

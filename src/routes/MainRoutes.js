@@ -24,7 +24,7 @@ class MainRoutes extends Component {
                     <MainHeader />
                     <Switch>
                         <Route exact path={Routes.LEADS} component={Leads} />
-                        <Route path={Routes.LEADS_ITEM} component={LeadsItem} />
+                        <Route exact path={Routes.LEADS_ITEM} component={LeadsItem} />
                         <Route exact path={Routes.ACTIVITES} component={Activities} />
                         <Route exact path={Routes.PRICING_REQUESTS} component={PricingRequests} />
                         <Route path={Routes.PRICING_REQUESTS_ITEM} component={PricingRequestItem} />

@@ -22,6 +22,7 @@ export class LeadsActionsClass {
     }
 
     @action addToActiveTabs(leadId, leadName) {
+        
         const isAlreadyAdded = LeadsStore.activeLeads.find((item, i) => {
             return item.id === leadId;
        })

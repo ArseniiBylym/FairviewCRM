@@ -14,7 +14,7 @@ class App extends Component {
 		return (
 			<Provider store={store}>
 				<div className="App">
-					<BrowserRouter>
+					<BrowserRouter >
 						<Switch >
 							<Route path="/login" component={Login} />
 							<PrivateRoute store={store} path='/' component={MainRoutes} />
