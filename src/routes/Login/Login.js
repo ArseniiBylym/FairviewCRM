@@ -22,6 +22,15 @@ class Login extends Component {
         this.props.history.push('/leads')
     }
 
+    keyUpHandler = (e) => {
+        console.log('hellog')
+        const keyCode = e.keyCode;
+        if(keyCode === 13) {
+            // e.preventDefault();
+            this.loginUser(e);
+        }
+    }
+
     render() {
         return (
             <div className="Login">
@@ -33,12 +42,12 @@ class Login extends Component {
                                 {/* <form > */}
                                     <div className="form-group">
                                         <label className="w-100">Name
-                                            <input onChange={this.inputHandler('name')} name="name" type="text" className="form-control"/>
+                                            <input onKeyUp={this.keyUpHandler} onChange={this.inputHandler('name')} name="name" type="text" className="form-control"/>
                                         </label>
                                     </div>
                                     <div className="form-group">
                                         <label className="w-100">Password
-                                            <input onChange={this.inputHandler('password')} name="password" type="password" className="form-control" />
+                                            <input onKeyUp={this.keyUpHandler} onChange={this.inputHandler('password')} name="password" type="password" className="form-control" />
                                         </label>
                                     </div>
                                     <button onClick={this.loginUser} className="btn btn-primary col-6 offset-3">Login</button>
