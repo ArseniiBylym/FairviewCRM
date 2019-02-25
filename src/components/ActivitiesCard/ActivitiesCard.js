@@ -6,6 +6,7 @@ import { observer, inject } from 'mobx-react';
 import { UserStore } from '../../store/AllStores';
 import { URL_PATH, fetchFromApi } from '../../api/api'
 import { ActivitiesActions } from '../../actions/AllActions'
+import moment from 'moment'
 
 
 @inject('store')
@@ -55,12 +56,12 @@ class ActivitiesCard extends Component {
                 <div className="c-card c-card-shadow p-0">
                 <div className="p-3 border-bottom"><a href="lead.html">
                     <div className="t-600-h text-truncate">{activityType}</div></a>
-                    <div className="t-400 c-gray-400">{createdAt}</div>
+                    <div className="t-400 c-gray-400">{moment(createdAt).format('MMM Do, h:mma')}</div>
                 </div>
                 <div className="px-3 pb-0 pt-3">
                     <div className="media mb-3"><img className="icon-16 mt-1 mr-3 ml-1" src={iconHome} alt="user icon" />
                     <div className="media-body">
-                        <div className="t-400">{/* activityCard.subtitle */}</div>
+                        <div className="t-400">{provider.legalBusName}</div>
                     </div>
                     </div>
                     <div className="media"><img className="icon-16 mt-1 mr-3 ml-1" src={iconUser} alt="home icon" />
