@@ -8,6 +8,7 @@ import { withRouter } from "react-router";
 import { observer, inject } from 'mobx-react';
 import iconUser from '../../resources/img/icon-user.svg'
 import iconActivity from '../../resources/img/icon-activity.svg'
+import moment from 'moment';
 
 @inject('store')
 @observer
@@ -20,7 +21,8 @@ class LeadsCard extends Component {
 
 
     render() {
-        const { databaseId, providerId, legalBusName, dba, plCity, plState, plZipcode, plPhone } = this.props.config;
+        const { databaseId, providerId, legalBusName, dba, plCity, plState, plZipcode, plPhone, lastCompletedActivity } = this.props.config;
+        console.log(this.props);
 
         return (
             <div className="LeadsCard col-sm-6 col-lg-4 col-xl-3">
@@ -40,7 +42,9 @@ class LeadsCard extends Component {
                 <div className="p-3 bg-gray-100">
                     <div className="media"><img className="icon-16 mt-1 mr-3" src={iconActivity} alt="activity icon" />
                         <div className="media-body">
-                            <div className="t-400 c-gray-400">Last: Call, Sep 28th, 10:56am</div>
+                            {lastCompletedActivity && 
+                                <div className="t-400 c-gray-400">Last: {lastCompletedActivity.activityTypeName}, {moment(lastCompletedActivity.createdAt).format('MMM, Do, hha')}</div>
+                            }
                         </div>
                     </div>
                 </div>

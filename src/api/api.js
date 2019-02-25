@@ -9,7 +9,8 @@ export const URL_PATH = {
     PROVIDER_CONTACT: '/provider-contact',
     QUESTION_WITH_OPTION: '/question-with-option',
     PRICING_REQUEST: '/pricing-request',
-    USERS: '/users'
+    USERS: '/users',
+    PRICING_REQUESTS: '/pricing-request'
 };
 
 const defaultParameters = {

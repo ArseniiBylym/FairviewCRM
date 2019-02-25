@@ -24,7 +24,9 @@ export class LeadsActionsClass {
                     plCity: item.plCity,
                     plState: item.plState,
                     plZipcode: item.plZipcode,
-                    plPhone: item.plPhone
+                    plPhone: item.plPhone,
+                    sortOrder: item.sortOrder,
+                    lastCompletedActivity: item.lastCompletedActivity
                 }
             })
             LeadsStore.leads = leadsArray;
