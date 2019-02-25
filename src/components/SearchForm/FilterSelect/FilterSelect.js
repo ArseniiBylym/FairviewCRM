@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { ActivitiesActions } from '../../../actions/AllActions'
 
-// import './FilterSelect.scss';
-
 class FilterSelect extends Component {
     render() {
       const { options } = this.props

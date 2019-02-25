@@ -1,9 +1,11 @@
 import { action, reaction } from 'mobx';
 import { ActivitiesStore, UserStore } from '../store/AllStores';
+import moment from 'moment'
 
 import { fetchFromApi, URL_PATH } from '../api/api'
 
 export class ActivitiesActionsClass {
+
     @action async fetchActivities() {
         
         const token = UserStore.accessToken
@@ -65,6 +67,10 @@ export class ActivitiesActionsClass {
     @action changeType(value) {
         ActivitiesStore.filterByType = value
         console.log(ActivitiesStore)
+    }
+
+    @action setDatePickerDateField(startData, endData) {
+        ActivitiesStore.datePickerDate = [moment().format(startData._i.slice(0, 3).join('/')), moment().format(endData._i.slice(0, 3).join('/'))]
     }
 
     @action searchFieldHandler(value) {

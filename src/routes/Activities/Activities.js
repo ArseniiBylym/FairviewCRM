@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './Activities.scss';
 import SearchForm from '../../components/SearchForm/SearchForm'
+import DateRangePicker from 'react-bootstrap-daterangepicker';
+
 import DateRangeSelect from '../../components/SearchForm/DateRangeSelect/DateRangeSelect'
 import FilterSelect from '../../components/SearchForm/FilterSelect/FilterSelect'
 import { ActivitiesActions } from '../../actions/AllActions'
-import { UserActions, LeadsActions } from '../../actions/AllActions'
 import ActivitiesCard from '../../components/ActivitiesCard/ActivitiesCard';
 import { observer, inject } from 'mobx-react';
 import Spinner from '../../components/Spinner/Spinner'
@@ -23,8 +24,9 @@ class Activities extends Component {
     }
     
     render() {
-
+        console.log(this.displayName)
         let activities = null;
+
         if(this.props.store.Activities.filteredActivities.length > 0) {
             activities = this.props.store.Activities.filteredActivities.map(item => {
                 return (
@@ -33,7 +35,6 @@ class Activities extends Component {
             })
         }
 
-        console.log(this.props.store.Activities)
         const { types } = this.props.store.Activities
         return (
             <div className="Activities">
@@ -45,9 +46,13 @@ class Activities extends Component {
                             </div>
                         </div>
                     </div>
-                    <SearchForm>
+                    <SearchForm searchAction={(value) => ActivitiesActions.searchFieldHandler(value)}>
                         <FilterSelect title={"Type"} id={"filter-type"} options={types}/>
-                        <DateRangeSelect />
+                        <div className="col-xl-3 col-lg-6">
+                            <DateRangePicker startDate="1/1/2016" endDate="1/1/2020" className="col-xl-3 col-lg-6" onApply={(e, picker) => ActivitiesActions.setDatePickerDateField(picker.startDate, picker.endDate)}>
+                                <DateRangeSelect />
+                            </DateRangePicker>
+                        </div>
                     </SearchForm>
                 </section>
                 <div className="p-2r">
