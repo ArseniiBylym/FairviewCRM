@@ -8,10 +8,21 @@
 
     .mainLinks{
 
-        border-bottom: 2px solid transparent;
+        // border-bottom: 2px solid transparent;
 
-        &.active{
-            border-bottom: 2px solid #ffd947;
+        // &.active{
+        //     border-bottom: 2px solid #ffd947;
+        // }
+    }
+    .leadLinks {
+
+        a {
+
+            border-bottom: 2px solid transparent;
+            
+            &.active{
+                border-bottom: 2px solid #ffd947;
+            }
         }
     }
 
