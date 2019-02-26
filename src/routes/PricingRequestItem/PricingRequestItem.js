@@ -22,14 +22,14 @@ class PricingRequestItem extends Component {
                     <div class="p-2r pb-3">
                         <div class="row">
                         <div class="col-12 text-left">
-                            <h1 class="t-900-h mb-4">{currentRequest.provider.dba}</h1>
+                            <h1 class="t-900-h mb-4">{`Some name`}</h1>
                         </div>
                         </div>
                     </div>
                 </section>
                 <PRMainInfo 
-                    lead={currentRequest.provider.legalBusName}
-                    leadId={currentRequest.provider.id}    
+                    lead={`Some name`}
+                    leadId={currentRequest.providerId}    
                     date={currentRequest.createdAt}
                     person={currentRequest.createdByUser.name}
                     status={currentRequest.complete}
