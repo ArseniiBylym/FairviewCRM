@@ -17,10 +17,8 @@ export class ActivitiesActionsClass {
             },
         })
 
-        console.log(result.data.data);
         if(result.data.data) {
             const activitiesArray = result.data.data.map((item, i) => {
-                console.log(item);
 
                 return {
                     id: item.id,
@@ -33,7 +31,6 @@ export class ActivitiesActionsClass {
                     updatedAt: item.updatedAt
                 }
             })
-            console.log(activitiesArray)
             ActivitiesStore.activities = activitiesArray;
             ActivitiesStore.totalActivitiesAmount = result.data.total;
             ActivitiesStore.activitiesFetched = true;
@@ -41,7 +38,6 @@ export class ActivitiesActionsClass {
     }
 
     @action async fetchTypes() {
-        console.log('SAFSDFSFD')
         const token = UserStore.accessToken
         const result = await fetchFromApi(URL_PATH.ACTIVITY_TYPE, {
             method: 'get',
@@ -51,7 +47,6 @@ export class ActivitiesActionsClass {
             },
         })
         if (result.data) {
-            console.log(result)
             const activitiesTypes = result.data.data.map((item, i) => {
 
                 return {
@@ -66,7 +61,6 @@ export class ActivitiesActionsClass {
 
     @action changeType(value) {
         ActivitiesStore.filterByType = value
-        console.log(ActivitiesStore)
     }
 
     @action setDatePickerDateField(startData, endData) {

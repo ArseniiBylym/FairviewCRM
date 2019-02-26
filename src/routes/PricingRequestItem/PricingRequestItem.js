@@ -12,7 +12,6 @@ class PricingRequestItem extends Component {
     }
 
     render() {
-        console.log(this.props);
         if(!this.props.store.PricingRequests.currentRequest) return null
         const {currentRequest} = this.props.store.PricingRequests;
         

@@ -24,7 +24,6 @@ class Activities extends Component {
     }
     
     render() {
-        console.log(this.displayName)
         let activities = null;
 
         if(this.props.store.Activities.filteredActivities.length > 0) {

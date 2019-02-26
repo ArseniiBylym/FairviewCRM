@@ -17,7 +17,6 @@ class ActivitiesCard extends Component {
         const { id, status } = this.props.config
 
         const changedStatus = status === 'O' ? 'C' : 'O'
-        console.log(status)
         const body = JSON.stringify({
             activity_id: id,
             status: changedStatus
@@ -44,7 +43,6 @@ class ActivitiesCard extends Component {
             }
 
         } catch (err) {
-            console.log(err);
         }
     }
 

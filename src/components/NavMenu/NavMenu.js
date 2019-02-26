@@ -7,17 +7,17 @@ function MainMenu(props) {
     return (
         <Fragment>
             <li>
-                <NavLink className="mainLinks" to={Routes.LEADS} activeClassName="active">
+                <NavLink className="mainLinks" to={Routes.LEADS} >
                     Leads
                 </NavLink>
             </li>
             <li>
-                <NavLink className="mainLinks" to={Routes.ACTIVITES} activeClassName="active">
+                <NavLink className="mainLinks" to={Routes.ACTIVITES} >
                     Activities
                 </NavLink>
             </li>
             <li>
-                <NavLink className="mainLinks" to={Routes.PRICING_REQUESTS} activeClassName="active">
+                <NavLink className="mainLinks" to={Routes.PRICING_REQUESTS} >
                     Pricing Requests
                 </NavLink>
             </li>

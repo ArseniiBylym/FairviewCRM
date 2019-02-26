@@ -49,7 +49,6 @@ export class LeadsActionsClass {
                 "Content-Type": "application/json" 
             },
         })
-        console.log(result.data);
         const {data} = result;
         if(data) {
             LeadsStore.currentLead = data;
@@ -63,7 +62,6 @@ export class LeadsActionsClass {
             ...data,
             providerId: LeadsStore.currentLead.databaseId
         })
-        console.log(body);
         // const token = UserStore.accessToken
         // const result = await fetchFromApi(URL_PATH.PROVIDER_CONTACT, {
         //     method: 'post',

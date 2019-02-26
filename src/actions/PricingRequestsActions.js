@@ -14,7 +14,6 @@ export class PricingRequestsActionsClass {
                 "Content-Type": "application/json" 
             },
         })
-        console.log(result);
 
         if(result.data) {
 
@@ -35,7 +34,6 @@ export class PricingRequestsActionsClass {
                 "Content-Type": "application/json" 
             },
         })
-        console.log(result.data);
         const {data} = result;
         if(data) {
             PricingRequestsStore.currentRequest = data;
@@ -47,7 +45,6 @@ export class PricingRequestsActionsClass {
     }
 
     @action searchFieldHandler(value) {
-        console.log('Pricing')
         PricingRequestsStore.searchField = value.trim().toLowerCase();
     }
 

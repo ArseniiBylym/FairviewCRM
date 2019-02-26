@@ -4,7 +4,6 @@ import { ActivitiesActions } from '../../../actions/AllActions'
 class FilterSelect extends Component {
     render() {
       const { options } = this.props
-      console.log(options)
         return (
             <div className="col-xl-2 col-lg-3">
                 <div className="form-group">

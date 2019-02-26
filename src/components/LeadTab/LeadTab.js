@@ -15,7 +15,6 @@ class LeadTab extends Component {
         e.preventDefault();
         e.stopPropagation();
         LeadsActions.removeFromActiveTabs(this.props.id);
-        console.log(this.props.store.Leads.currentLead.databaseId, this.props.id)
         if(+this.props.store.Leads.currentLead.databaseId === +this.props.id) {
             this.props.history.push('/leads');
         }

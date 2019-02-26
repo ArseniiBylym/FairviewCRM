@@ -25,7 +25,5 @@ export const fetchFromApi = async(url, params) => {
     //     ...defaultParameters,
     //     ...params
     // }
-    // console.log(parameters);
-    console.log(params);
     return axios(baseURL + url, params);
 };

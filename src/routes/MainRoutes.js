@@ -28,6 +28,7 @@ class MainRoutes extends Component {
                         <Route exact path={Routes.ACTIVITES} component={Activities} />
                         <Route exact path={Routes.PRICING_REQUESTS} component={PricingRequests} />
                         <Route path={Routes.PRICING_REQUESTS_ITEM} component={PricingRequestItem} />
+                        <Route exact path="/" component={Leads} />
                         <Route path='/' component={PageNotFound} />
                     </Switch>
                     {/* <Modal/> */}

@@ -43,7 +43,7 @@ class MainHeader extends Component {
                     </div>
                 </div>
                 <div className="logo mainLogo">
-                    <Link className="mainLinks" to={Routes.LEADS} activeClassName="active">
+                    <Link className="mainLinks" to={Routes.LEADS} >
                         <div className="logo-demo"><img className="mainLogoImg" src={mainLogo} alt="mainLogo" /></div>
                     </Link>    
                 </div>

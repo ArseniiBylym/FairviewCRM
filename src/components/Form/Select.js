@@ -5,12 +5,12 @@ class Select extends Component {
 
         const {label, options, onChange} = this.props;
         return (
-            <div class="form-group formGroup-alignStart">
-                <label for="l-details-edit-business-type">{label}</label>
-                <select class="form-control" id="l-details-edit-business-type">
+            <div className="form-group formGroup-alignStart">
+                <label htmlFor="l-details-edit-business-type">{label}</label>
+                <select className="form-control" id="l-details-edit-business-type">
                     {options.map((item, i) => {
                         return (
-                            <option value={item.value} selected={item.selected}>{item.value}</option>
+                            <option key={item.value} keyvalue={item.value} selected={item.selected}>{item.value}</option>
                         )
                     })}
                 </select>

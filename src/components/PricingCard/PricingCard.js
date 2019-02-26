@@ -12,7 +12,6 @@ class PricingCard extends Component {
     }
 
     render() {
-      console.log(this.props.config)
 
       const {cardcode, complete, createdAt, createdByUser, createdByUserId, id, note, provider, providerId, updatedAt} = this.props.config;
         return (

@@ -15,14 +15,12 @@ class LeadsItem extends Component {
     }
 
     componentDidUpdate = (prevProps) => {
-        console.log(this.props.match.params.id)
         if(prevProps.match.params.id !== this.props.match.params.id) {
             LeadsActions.setCurrentLead(this.props.match.params.id)
         }
     }
 
     render() {
-        console.log(this.props);
         if(!this.props.store.Leads.currentLead) return <Spinner />
         const {currentLead} = this.props.store.Leads;
         

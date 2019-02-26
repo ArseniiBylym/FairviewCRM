@@ -43,9 +43,6 @@ class LeadSidebar extends Component {
                     </Fragment>
         })
     }
-    componentDidUpdate = () => {
-        console.log(this.state);
-    }
 
 
 
@@ -98,8 +95,8 @@ class LeadSidebar extends Component {
                     <Input label='DBA' value={this.props.store.Leads.currentLead.dba}  />
                     <Input label='Legal Business Name' value={this.props.store.Leads.currentLead.legalBusName}  />
                     <Input label='Business Group' value={``}  />
-                    <div class="form-group">
-                      <button class="btn btn-light" type="button">Manage Business Groups</button>
+                    <div className="form-group">
+                      <button className="btn btn-light" type="button">Manage Business Groups</button>
                     </div>
                     <Select label='Type' 
                         options={[
@@ -148,7 +145,6 @@ class LeadSidebar extends Component {
         })
     }
     saveContactPersonHandler = () => {
-        console.log(this.state.createContact)
         if(!this.state.createContact.firstName || !this.state.createContact.lastName) return false;
         LeadsActions.createNewContact(this.state.createContact);
     }
@@ -163,7 +159,6 @@ class LeadSidebar extends Component {
     // }
 
     // saveMainContactHandler = () => {
-    //     console.log(this.state.createPersonContact)
     //     if(!this.state.createPersonContact.firstName || !this.state.createPersonContact.lastName) return false;
     //     LeadsActions.createNewContact(this.state.createPersonContact);
     // }

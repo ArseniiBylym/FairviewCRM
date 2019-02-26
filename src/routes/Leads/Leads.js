@@ -25,7 +25,6 @@ class Leads extends Component {
 
 
     render() {
-        console.log(this.props.store);
          
         let leads = null;
         if (this.props.store.Leads.leads.length > 0 && this.props.store.Leads.filteredLeads.length > 0) {
