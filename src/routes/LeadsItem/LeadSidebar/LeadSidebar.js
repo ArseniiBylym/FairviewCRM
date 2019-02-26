@@ -15,6 +15,26 @@ import Checkbox from '../../../components/Form/Checkbox';
 class LeadSidebar extends Component {
 
     state = {
+        details: {
+            dba: '',
+            legalBusName: '',
+            groupId: '',
+            relationType: '',
+            drugLicenseType: '',
+            fetched: false,
+        },
+        address: {
+            plAddress1: '',
+            plAddress2: '',
+            plCity: '',
+            plState: '',
+            plZipcode: '',
+        },
+        contact: {
+            contactPhone: '',
+            contactExt: '',
+            contactEmail: '',
+        },
         createPersonContact: {
             firstName: '',
             lastName:'',
@@ -22,29 +42,32 @@ class LeadSidebar extends Component {
             title: '',
             officePhone: '',
             fax: '',
-            emailAddress: ''
-        }
+            emailAddress: '',
+            fetched: false,
+        },
     }
 
-    editDbaHandler = e => {
-        LeadsActions.editCurrentLead('dba', e.target.value)
+    // editDbaHandler = e => {
+    //     LeadsActions.editCurrentLead('dba', e.target.value)
+    // }
+
+    // editDetailsData = () => {
+    //     ModalActions.configModalData({
+    //         header: 'Edit details',
+    //         withRemoveButton: false,
+    //         content:<Fragment>
+    //                     <Input config={{
+    //                         label: 'DBA', 
+    //                         value: this.props.store.Leads.currentLead.dba,
+    //                         onChange: this.editDbaHandler
+    //                     }}/>
+    //                 </Fragment>
+    //     })
+    // }
+
+    componentDidUpdate = () => {
+        console.log(this.state);
     }
-
-    editDetailsData = () => {
-        ModalActions.configModalData({
-            header: 'Edit details',
-            withRemoveButton: false,
-            content:<Fragment>
-                        <Input config={{
-                            label: 'DBA', 
-                            value: this.props.store.Leads.currentLead.dba,
-                            onChange: this.editDbaHandler
-                        }}/>
-                    </Fragment>
-        })
-    }
-
-
 
     render() {
         const {legalBusName, license, plAddress1, plCity, plState, plZipcode, plPhone, plFax, plEmail, contactLName, contactFName, contactMInitial, 
@@ -92,9 +115,9 @@ class LeadSidebar extends Component {
                     </LeadSidebarCard>
                 </div>
                 <ModalTemp header="Edit details" id="detailsModal" withRemoveButton={false}>
-                    <Input label='DBA' value={this.props.store.Leads.currentLead.dba}  />
-                    <Input label='Legal Business Name' value={this.props.store.Leads.currentLead.legalBusName}  />
-                    <Input label='Business Group' value={``}  />
+                    <Input onChange={this.editInputHandler} dataType="details" name="dba"  label='DBA' value={this.props.store.Leads.currentLead.dba}  />
+                    <Input onChange={this.editInputHandler} dataType="details" name="legalBusName"  label='Legal Business Name' value={this.props.store.Leads.currentLead.legalBusName}  />
+                    <Input onChange={this.editInputHandler} dataType="details" name="plAddress1"  label='Business Group' value={``}  />
                     <div className="form-group">
                       <button className="btn btn-light" type="button">Manage Business Groups</button>
                     </div>
@@ -110,44 +133,51 @@ class LeadSidebar extends Component {
                             {value: 'DEA', selected: false},
                         ]} 
                     />
+
                 </ModalTemp>
                 <ModalTemp header="Edit address" id="addressModal" withRemoveButton={false}>
-                    <Input label='Address 1' value={this.props.store.Leads.currentLead.plAddress1} />
-                    <Input label='Address 2' value={this.props.store.Leads.currentLead.plAddress2} />
-                    <Input label='City' value={this.props.store.Leads.currentLead.plCity} />
-                    <Input label='State' value={this.props.store.Leads.currentLead.plState} />
-                    <Input label='Zip-code' value={this.props.store.Leads.currentLead.plZipcode} />
+                    <Input onChange={this.editInputHandler} dataType="address" name="plAddress1" label='Address 1' value={this.props.store.Leads.currentLead.plAddress1} />
+                    <Input onChange={this.editInputHandler} dataType="address" name="plAddress2" label='Address 2' value={this.props.store.Leads.currentLead.plAddress2} />
+                    <Input onChange={this.editInputHandler} dataType="address" name="plCity" label='City' value={this.props.store.Leads.currentLead.plCity} />
+                    <Input onChange={this.editInputHandler} dataType="address" name="plState" label='State' value={this.props.store.Leads.currentLead.plState} />
+                    <Input onChange={this.editInputHandler} dataType="address" name="plZipcode" label='Zip-code' value={this.props.store.Leads.currentLead.plZipcode} />
                 </ModalTemp>
                 <ModalTemp header="Edit contacts" id="contactsModal" withRemoveButton={false}>
-                    <Input label='Phone number' value={this.props.store.Leads.currentLead.plPhone} />
-                    <Input label='Phone number extension' value={this.props.store.Leads.currentLead.plExt} />
-                    <Input label='Fax number' value={this.props.store.Leads.currentLead.plFax} />
+                    <Input onChange={this.editInputHandler} dataType="contact" name="contactPhone" label='Phone number' value={this.props.store.Leads.currentLead.plPhone} />
+                    <Input onChange={this.editInputHandler} dataType="contact" name="contactExt" label='Phone number extension' value={this.props.store.Leads.currentLead.plExt} />
+                    <Input onChange={this.editInputHandler} dataType="contact" name="contactEmail" label='Email' value={this.props.store.Leads.currentLead.plFax} />
                 </ModalTemp>
                 <ModalTemp saveAction={this.saveContactPersonHandler} header="Create contact person" id="createPersonContacts" withRemoveButton={false}>
-                    <Input onChange={this.createContactPersonHandler} name="firstName" label='First name' value='' />
-                    <Input onChange={this.createContactPersonHandler} name="middleName" label='Middle name' value='' />
-                    <Input onChange={this.createContactPersonHandler} name="lastName" label='Last name' value='' />
-                    <Input onChange={this.createContactPersonHandler} name="title" label='Title' value='' />
-                    <Input onChange={this.createContactPersonHandler} name="officePhone" label='Office phone' value='' />
-                    <Input onChange={this.createContactPersonHandler} name="fax" label='Fax' value='' />
+                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="firstName" label='First name' value='' />
+                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="middleName" label='Middle name' value='' />
+                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="lastName" label='Last name' value='' />
+                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="title" label='Title' value='' />
+                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="officePhone" label='Office phone' value='' />
+                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="fax" label='Fax' value='' />
                     <Checkbox label='Primary contact' checked={false} />
                 </ModalTemp>
             </div>
         );
     }
 
-    createContactPersonHandler = e => {
+   
+
+    editInputHandler = e => {
+        console.log(e.target.name)
+        const type = e.target.dataset.type;
         this.setState({
-            createContact: {
-                ...this.state.createContact,
+            [type]: {
+                ...this.state[type],
                 [e.target.name]: e.target.value
             }
         })
     }
+
     saveContactPersonHandler = () => {
         if(!this.state.createContact.firstName || !this.state.createContact.lastName) return false;
         LeadsActions.createNewContact(this.state.createContact);
     }
+
 
     // editMainContactHandler = e => {
     //     this.setState({
