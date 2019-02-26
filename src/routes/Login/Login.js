@@ -59,7 +59,7 @@ class Login extends Component {
                                     {this.props.store.User.loginError && 
                                         <p className="text-danger">{this.props.store.User.loginError}</p>
                                     }
-                                    <button onClick={this.loginUser} className="btn btn-primary col-6 offset-3">Login</button>
+                                    <button onClick={this.loginUser} className="btn mainBgColor col-6 offset-3">Login</button>
                                 {/* </form> */}
                             </div>
                         </div>

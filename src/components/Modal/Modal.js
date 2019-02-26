@@ -67,7 +67,7 @@ class Modal extends Component {
                             </div>}
                             <div className="ml-auto">
                                 <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
-                                <button class="btn btn-primary ml-2" type="button">{data.saveButtonTitle}</button>
+                                <button class="btn mainBgColor ml-2" type="button">{data.saveButtonTitle}</button>
                             </div>
                         </div>
                     </div>

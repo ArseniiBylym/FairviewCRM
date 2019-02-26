@@ -31,7 +31,7 @@ class SearchForm extends Component {
                       <div className="col-xl-2 col-lg-3">
                         <div className="form-group">
                           <label>&nbsp;</label>
-                          <button className="btn btn-primary btn-block" type="button">Search</button>
+                          <button className="btn btn-block mainBgColor" type="button">Search</button>
                         </div>
                       </div>
                     </div>

@@ -10921,3 +10921,17 @@ body {
   flex-flow: column nowrap;
   align-items: flex-start;
 }
+.mainBgColor {
+  background-color: #ffd947;
+}
+.mainBgColor:hover{
+  background-color: #e5c13d;
+}
+.LeadContent{
+  .nav-link.active{
+    color: #ffd947;
+  }
+  .nav-link:before{
+    background-color: #ffd947
+  }
+}

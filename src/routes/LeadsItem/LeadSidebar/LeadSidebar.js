@@ -88,7 +88,7 @@ class LeadSidebar extends Component {
                         <div className="col-12">
                             <div className="px-3">
                                 <div className="mx-3">
-                                    <button className="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#createPersonContacts">Add a Contact</button>
+                                    <button className="btn mainBgColor btn-block" type="button" data-toggle="modal" data-target="#createPersonContacts">Add a Contact</button>
                                 </div>
                             </div>
                         </div>
