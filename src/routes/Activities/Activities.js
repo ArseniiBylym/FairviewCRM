@@ -1,19 +1,49 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Activities.scss';
-import SearchForm from '../../components/SearchForm/SearchForm'
+import SearchForm from '../../components/SearchForm/SearchForm';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
-
-import DateRangeSelect from '../../components/SearchForm/DateRangeSelect/DateRangeSelect'
-import FilterSelect from '../../components/SearchForm/FilterSelect/FilterSelect'
+import IconPlus from '../../resources/img/icon-plus-white.svg';
+import DateRangeSelect from '../../components/SearchForm/DateRangeSelect/DateRangeSelect';
+import FilterSelect from '../../components/SearchForm/FilterSelect/FilterSelect';
+import Input from '../../components/Form/Input';
 import { ActivitiesActions } from '../../actions/AllActions'
+import { ModalActions } from '../../actions/AllActions'
+import ModalTemp from '../../components/ModalTemp/ModalTemp'
+import Select from '../../components/Form/Select';
 import ActivitiesCard from '../../components/ActivitiesCard/ActivitiesCard';
 import { observer, inject } from 'mobx-react';
 import Spinner from '../../components/Spinner/Spinner'
+import { ActivitiesStore } from '../../store/AllStores';
 
 @inject('store')
 @observer
 class Activities extends Component {
 
+    testHandler() {
+        ActivitiesActions.createActivity()
+    }
+
+    postAndFetchActivity(data) {
+        console.log(this.props.store)
+        ActivitiesActions.postNewActivity(data)
+    }
+
+    createActivity() {
+        ModalActions.configModalData({
+            header: 'New Activity',
+            withRemoveButton: false,
+            content:<Fragment>
+                        <Input config={{
+                            label: 'DBA', 
+                            value: 'this.props.store.Leads.currentLead.dba',
+                            onChange: this.testHandler
+                        }}/>
+                    </Fragment>
+        })
+
+        console.log(this.props.store)
+    }
+    
     componentDidMount = async () => {
        await ActivitiesActions.fetchActivities();
        !this.props.store.Activities.types.length && await ActivitiesActions.fetchTypes();
@@ -24,6 +54,7 @@ class Activities extends Component {
     }
     
     render() {
+        console.log(this.props.store)
         let activities = null;
 
         if(this.props.store.Activities.filteredActivities.length > 0) {
@@ -59,6 +90,38 @@ class Activities extends Component {
                         {activities ? activities : !this.props.store.Activities.activitiesFetched ? <Spinner /> : null}
                     </div>
                 </div>
+                <button className="button-floating" type="button" data-toggle="modal" data-target="#activityCreateModal" onClick={() => this.createActivity()}>
+                    <span className="icon"><img src={IconPlus} /></span><span className="text">Create activity</span>
+                </button>
+                <ModalTemp header="Edit details" id="activityCreateModal" withRemoveButton={false} saveAction={data => this.postAndFetchActivity(data)}>
+                    <Input label='Note' value={'TEST'}  />
+                    <Input label='Provider ID' value={'C00085B'}  />
+                    <Input label='Activity Type ID' value={1}  />
+                    <Input label='Remind' value={true}  />
+                    <Input label='Activity Time' value={'2019-02-26T09:00:36.000Z'}  />
+                    <Input label='Remind At' value={null}  />
+                    <Input label='Remind Before' value={null}  />
+                    <Select label='Activity Type' 
+                        options={[{value: 'All', selected: true}, ...ActivitiesStore.types.map(item => {
+                            return {value: item.name, id: item.id, selected: false}
+                        })]} 
+                    />
+                    {/* <div className="form-group">
+                      <button className="btn btn-light" type="button">Manage Business Groups</button>
+                    </div>
+                    <Select label='Type' 
+                        options={[
+                            {value: 'Chain', selected: true},
+                            {value: 'Distributor', selected: false},
+                        ]} 
+                    />
+                     <Select label='Licence Type' 
+                        options={[
+                            {value: 'Precursor', selected: true},
+                            {value: 'DEA', selected: false},
+                        ]} 
+                    /> */}
+                </ModalTemp>
             </div>
         );
     }

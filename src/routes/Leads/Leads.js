@@ -37,7 +37,6 @@ class Leads extends Component {
         }
 
         const { customerGroups } = this.props.store.Leads
-        console.log(customerGroups)
 
         return (
             <div className="Leads">

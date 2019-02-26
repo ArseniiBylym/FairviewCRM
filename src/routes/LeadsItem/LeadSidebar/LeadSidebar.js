@@ -45,7 +45,6 @@ class LeadSidebar extends Component {
     }
 
 
-
     render() {
         const {legalBusName, license, plAddress1, plCity, plState, plZipcode, plPhone, plFax, plEmail, contactLName, contactFName, contactMInitial, 
             contactTitle, contactPhone, contactExt, contactEmail, salesReps } = this.props.config;

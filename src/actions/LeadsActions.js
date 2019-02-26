@@ -31,7 +31,6 @@ export class LeadsActionsClass {
                 "Content-Type": "application/json" 
             },
         })
-        console.log(result)
         if(result.data) {
             LeadsStore.customerGroups = result.data;
         };

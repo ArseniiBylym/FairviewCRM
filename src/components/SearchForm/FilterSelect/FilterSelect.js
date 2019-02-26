@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ActivitiesActions } from '../../../actions/AllActions'
 
 class FilterSelect extends Component {
     render() {
@@ -14,7 +13,7 @@ class FilterSelect extends Component {
                       const name = item.name || item.groupName
                       const code = item.groupCode && item.groupCode
 
-                      return <option key={i} value={code ? code : name}>{name}</option>
+                      return <option key={i} value={code ? code : item.id}>{name}</option>
                     })}
                   </select>
                 </div>

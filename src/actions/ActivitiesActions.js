@@ -37,6 +37,39 @@ export class ActivitiesActionsClass {
         };
     }
 
+    @action pushNewlyCreatedActivity(activity) {
+        ActivitiesStore.activities.push(activity)
+    }
+
+    @action async postNewActivity(data) {
+        console.log(data)
+        const body = JSON.stringify({
+            note: data[0],
+            providerId: data[1],
+            activityTypeId: data[2],
+            remind: data[3],
+            activityTime: data[4],
+            remindAt: data[5],
+            remindBefore: data[6],
+            activityType: data[7].value
+        })
+
+        const token = UserStore.accessToken
+        const result = await fetchFromApi(URL_PATH.ACTIVITY, {
+            method: 'post',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json" 
+            },
+            data: body
+        })
+        if (result.data) {
+            console.log(result.data)
+            this.pushNewlyCreatedActivity(result.data)
+        }
+
+    }
+
     @action async fetchTypes() {
         const token = UserStore.accessToken
         const result = await fetchFromApi(URL_PATH.ACTIVITY_TYPE, {

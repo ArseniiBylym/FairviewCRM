@@ -31,7 +31,9 @@ class ModalTemp extends Component {
                             </div>}
                             <div className="ml-auto">
                                 <button className="btn btn-light" type="button" data-dismiss="modal">Close</button>
-                                <button onClick={data.saveAction} className="btn btn-primary ml-2" data-dismiss="modal" type="button">{data.saveButtonTitle ? data.saveButtonTitle : 'Save'}</button>
+                                <button onClick={() => this.props.saveAction(this.props.children.map(item => {
+                                    return item.props.options ? item.props.options.find((item) => item.selected && item.value) : item.props.value
+                                    })) /* this.props.children.forEach(item => console.log(item.props.value)) */} className="btn btn-primary ml-2" data-dismiss="modal" type="button">{data.saveButtonTitle ? data.saveButtonTitle : 'Save'}</button>
                             </div>
                         </div>
                     </div>
