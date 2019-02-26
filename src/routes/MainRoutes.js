@@ -22,6 +22,7 @@ class MainRoutes extends Component {
         return (
             <div className="MainRoutes">
                     <MainHeader />
+                    <div className="mainContentWrapper">
                     <Switch>
                         <Route exact path={Routes.LEADS} component={Leads} />
                         <Route exact path={Routes.LEADS_ITEM} component={LeadsItem} />
@@ -31,7 +32,7 @@ class MainRoutes extends Component {
                         <Route exact path="/" component={Leads} />
                         <Route path='/' component={PageNotFound} />
                     </Switch>
-                    {/* <Modal/> */}
+                    </div>
             </div>
         );
     }
