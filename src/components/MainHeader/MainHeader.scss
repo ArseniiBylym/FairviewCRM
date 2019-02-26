@@ -1,10 +1,28 @@
 .MainHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+
+
     .mainLinks{
 
-        border-bottom: 2px solid transparent;
+        // border-bottom: 2px solid transparent;
 
-        &.active{
-            border-bottom: 2px solid #ffd947;
+        // &.active{
+        //     border-bottom: 2px solid #ffd947;
+        // }
+    }
+    .leadLinks {
+
+        a {
+
+            border-bottom: 2px solid transparent;
+            
+            &.active{
+                border-bottom: 2px solid #ffd947;
+            }
         }
     }
 

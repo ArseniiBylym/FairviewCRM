@@ -21,7 +21,7 @@ class PricingCard extends Component {
                 <a href="#">
                   <div className="t-600-h text-truncate">{createdByUser.name}</div>
                 </a>
-                <div className="t-400 c-gray-400">#{id}, {moment(updatedAt).format('MMM, Do, hha')}</div>
+                <div className="t-400 c-gray-400">#{id}, {moment(updatedAt).format('MMM Do, hh:mma')}</div>
               </div>
               <div className="p-3 bg-gray-100">
                 <div className="media"><img className="mr-2" src={dotIcon} alt="dot icon" />

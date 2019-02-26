@@ -44,7 +44,7 @@ class Leads extends Component {
                     <div className="p-2r pb-3">
                         <div className="row">
                             <div className="col-12 text-left">
-                                <h1 className="t-900-h mb-4">Leads</h1>
+                                <h1 className="t-900-h mb-4">Customers</h1>
                             </div>
                         </div>
                     </div>

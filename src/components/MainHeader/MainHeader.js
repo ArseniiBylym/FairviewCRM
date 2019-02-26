@@ -50,7 +50,7 @@ class MainHeader extends Component {
                 <ul className="epics-menu epics-collapsible border-right">
                     <NavMenu />
                 </ul>
-                <ul className="epics-menu leads-menu border-right flex-grow-1">
+                <ul className="epics-menu leads-menu border-right flex-grow-1 leadLinks">
                     {openedTabs}
                     <li className="ml-auto">
                         <div className="mr-2 bellIcon"/>

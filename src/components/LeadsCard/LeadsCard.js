@@ -31,7 +31,7 @@ class LeadsCard extends Component {
             <div className="c-card c-card-shadow p-0">
                 <div onClick={this.leadClickHandler} className="p-3 border-bottom cursor-pointer background-on-hover">
                     <div className="t-600-h text-truncate">{legalBusName}</div>
-                    <div className="t-400 c-gray-400">{dba}</div>
+                    <div className="t-400 c-gray-400">{providerId}</div>
                 </div>
                 <div className="p-3">
                     <div className="media"><img className="icon-16 mt-1 mr-3 ml-1" src={iconUser} alt="user icon" />
@@ -41,15 +41,13 @@ class LeadsCard extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="p-3 bg-gray-100">
+                {lastCompletedActivity && <div className="p-3 bg-gray-100">
                     <div className="media"><img className="icon-16 mt-1 mr-3" src={iconActivity} alt="activity icon" />
                         <div className="media-body">
-                            {lastCompletedActivity && 
-                                <div className="t-400 c-gray-400">Last: {lastCompletedActivity.activityTypeName}, {moment(lastCompletedActivity.createdAt).format('MMM, Do, hha')}</div>
-                            }
+                            <div className="t-400 c-gray-400">Last: {lastCompletedActivity.activityTypeName}, {moment(lastCompletedActivity.createdAt).format('MMM, Do, hha')}</div>
                         </div>
                     </div>
-                </div>
+                </div>}
                 </div>
             </div>
         );
