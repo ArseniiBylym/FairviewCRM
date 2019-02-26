@@ -6,6 +6,7 @@ export const URL_PATH = {
     ACTIVITY: '/activity',
     ACTIVITY_TYPE: '/activity-type',
     PROVIDER: '/provider',
+    CUSTOMER_GROUP: '/customer-group',
     PROVIDER_CONTACT: '/provider-contact',
     QUESTION_WITH_OPTION: '/question-with-option',
     PRICING_REQUEST: '/pricing-request',

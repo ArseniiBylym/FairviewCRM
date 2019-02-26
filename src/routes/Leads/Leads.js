@@ -17,6 +17,7 @@ class Leads extends Component {
 
     componentDidMount = async () => {
         await LeadsActions.fetchLeads();
+        !this.props.store.Leads.customerGroups.length && await LeadsActions.fetchCustomerGroups()
     }
  
      componentWillUnmount = () => {
@@ -36,6 +37,9 @@ class Leads extends Component {
             })
         }
 
+        const { customerGroups } = this.props.store.Leads
+        console.log(customerGroups)
+
         return (
             <div className="Leads">
                 <section className="border-bottom">
@@ -47,14 +51,13 @@ class Leads extends Component {
                         </div>
                     </div>
                     <SearchForm searchAction={(value) => LeadsActions.searchFieldHandler(value)}>
-                        <FilterSelect title={"Group"} id={"filter-group"}/>
+                        <FilterSelect title={"Group"} id={"filter-group"} options={customerGroups} selectAction={value => LeadsActions.changeCustomerGroup(value)}/>
                         <FilterSelect title={"Type"} id={"filter-type"}/>
                         <FilterCheckbox />
                     </SearchForm>
                 </section>
                 <div className="p-2r">
                     <div className="row">
-
                         {leads ? leads : !this.props.store.Leads.leadsFetched ? <Spinner /> : null}
                     </div>
                 </div>

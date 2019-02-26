@@ -21,6 +21,26 @@ export class LeadsActionsClass {
         };
     }
 
+    @action async fetchCustomerGroups() {
+
+        const token = UserStore.accessToken
+        const result = await fetchFromApi(URL_PATH.CUSTOMER_GROUP, {
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json" 
+            },
+        })
+        console.log(result)
+        if(result.data) {
+            LeadsStore.customerGroups = result.data;
+        };
+    }
+
+    @action changeCustomerGroup(value) {
+        LeadsStore.filterByGroup = value;
+    }
+
     @action addToActiveTabs(leadId, leadName) {
         
         const isAlreadyAdded = LeadsStore.activeLeads.find((item, i) => {

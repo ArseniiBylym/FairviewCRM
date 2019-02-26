@@ -87,6 +87,8 @@ export class Leads {
     // @observable leads = testLeads;
     @observable totalLeadsAmount = null;
     @observable leadsFetched = false;
+    @observable customerGroups = []
+    @observable filterByGroup = 'All'
 
     @observable activeLeads = [];
     @observable currentLead = null;
@@ -96,12 +98,16 @@ export class Leads {
 
     @computed get filteredLeads() {
         return this.leads.filter((item, i) => {
+            console.log(item)
 
-                console.log(item.legalBusName)
                 const leadItem = item.legalBusName.trim().toLowerCase().indexOf(this.searchField)
                 // const a = Date.parse(this.datePickerDate[0]) < Date.parse(item.lastCompletedActivity.createdAt.split('T')[0]) ? Date.parse(item.lastCompletedActivity.createdAt.split('T')[0]) : Date.parse(this.datePickerDate[0])
                 
-                return leadItem !== -1/*  && a < Date.parse(this.datePickerDate[1]) */
+                if(this.filterByGroup === 'All') {
+                    return leadItem !== -1 /*  && a < Date.parse(this.datePickerDate[1]) */
+                } else {
+                    return leadItem !== -1 && item.custgorupCode === +this.filterByGroup/*  && a < Date.parse(this.datePickerDate[1]) */
+                }
         })
     }
 }
