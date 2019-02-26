@@ -8,7 +8,7 @@ function MainMenu(props) {
         <Fragment>
             <li>
                 <NavLink className="mainLinks" to={Routes.LEADS} >
-                    Leads
+                    Customers
                 </NavLink>
             </li>
             <li>
@@ -19,6 +19,11 @@ function MainMenu(props) {
             <li>
                 <NavLink className="mainLinks" to={Routes.PRICING_REQUESTS} >
                     Pricing Requests
+                </NavLink>
+            </li>
+            <li>
+                <NavLink className="mainLinks" to={Routes.EMPTY_PAGE} >
+                    Leads
                 </NavLink>
             </li>
         </Fragment>

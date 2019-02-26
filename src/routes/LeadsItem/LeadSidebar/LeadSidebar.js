@@ -113,7 +113,6 @@ class LeadSidebar extends Component {
                         <SidebarDetailsRow name='Rep' value={null} />
                         <SidebarDetailsRow name='Group' value={null} />
                         <SidebarDetailsRow name='Type' value={null} />
-                        <SidebarDetailsRow name='License' value={license} />
                     </LeadSidebarCard>
                     <LeadSidebarCard withBorder={true} withEditButton={true} relatedModalId="addressModal" header='Address'>
                         <div className="row">
@@ -122,7 +121,7 @@ class LeadSidebar extends Component {
                             </div>
                         </div>
                     </LeadSidebarCard>
-                    <LeadSidebarCard withBorder={true} withEditButton={true} relatedModalId="contactsModal" header='Contact'>
+                    <LeadSidebarCard editHandler={this.initContactModalData} withBorder={true} withEditButton={true} relatedModalId="contactsModal" header='Contact'>
                         <div className="row">
                             <div className="col-12">
                                 <div className="c-gray-500">{`P. ${contactPhone} (ext. ${contactExt})`}</div>
@@ -133,8 +132,8 @@ class LeadSidebar extends Component {
                     </LeadSidebarCard>
                     <LeadSidebarCard withBorder={false} withEditButton={false} header='Contact persons'>
                         <div className="col-12 mb-4">
-                            {salesReps.map(item => (
-                                <SidebarContactPersonItem key={item.id} isActive={true} name={item.name} position={null} phone={null} />
+                            {salesReps.map((item, i) => (
+                                <SidebarContactPersonItem key={item.id} index={i} isActive={true} name={item.name} position={null} phone={null} />
                             ))}
                             
                         </div>
@@ -179,10 +178,10 @@ class LeadSidebar extends Component {
                     <Input onChange={this.editInputHandler} dataType="address" name="plState" label='State' value={this.props.store.Leads.currentLead.plState} />
                     <Input onChange={this.editInputHandler} dataType="address" name="plZipcode" label='Zip-code' value={this.props.store.Leads.currentLead.plZipcode} />
                 </ModalTemp>
-                <ModalTemp header="Edit contacts" id="contactsModal" withRemoveButton={false}>
-                    <Input onChange={this.editInputHandler} dataType="contact" name="contactPhone" label='Phone number' value={this.props.store.Leads.currentLead.plPhone} />
-                    <Input onChange={this.editInputHandler} dataType="contact" name="contactExt" label='Phone number extension' value={this.props.store.Leads.currentLead.plExt} />
-                    <Input onChange={this.editInputHandler} dataType="contact" name="contactEmail" label='Email' value={this.props.store.Leads.currentLead.plFax} />
+                <ModalTemp saveAction={this.saveContactHandler} closeAction={this.clearContactModalData} header="Edit contacts" id="contactsModal" withRemoveButton={false}>
+                    <Input onChange={this.editInputHandler} dataType="contact" name="contactPhone" label='Phone number' value={this.state.contact.contactPhone} />
+                    <Input onChange={this.editInputHandler} dataType="contact" name="contactExt" label='Phone number extension' value={this.state.contact.contactExt} />
+                    <Input onChange={this.editInputHandler} dataType="contact" name="contactEmail" label='Email' value={this.state.contact.contactEmail} />
                 </ModalTemp>
                 <ModalTemp saveAction={this.saveContactPersonHandler} header="Create contact person" id="createPersonContacts" withRemoveButton={false}>
                     <Input onChange={this.editInputHandler} required={true} dataType="createPersonContact" name="firstName" label='First name' value='' />
@@ -195,6 +194,33 @@ class LeadSidebar extends Component {
                 </ModalTemp>
             </div>
         );
+    }
+
+
+    initContactModalData = () => {
+        const phone = this.props.store.Leads.currentLead.contactPhone
+        const ext = this.props.store.Leads.currentLead.contactExt
+        const email = this.props.store.Leads.currentLead.contactEmail
+        this.setState({
+            contact: {
+                contactPhone: phone,
+                contactExt: ext,
+                contactEmail: email,
+            },
+        })
+    }
+    saveContactHandler = () => {
+        
+    }
+
+    clearContactModalData = () => {
+        this.setState({
+            contact: {
+                contactPhone: '',
+                contactExt: '',
+                contactEmail: '',
+            },
+        })
     }
 
    
