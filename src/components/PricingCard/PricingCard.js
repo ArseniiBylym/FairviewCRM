@@ -18,8 +18,10 @@ class PricingCard extends Component {
         return (
             <div className="col-sm-6 col-lg-4 col-xl-3">
             <div onClick={this.clickCardHandler} className="c-card c-card-shadow p-0">
-              <div className="p-3"><a href="#">
-                  <div className="t-600-h text-truncate">{provider.legalBusName}</div></a>
+              <div className="p-3">
+                <a href="#">
+                  <div className="t-600-h text-truncate">{createdByUser.name}</div>
+                </a>
                 <div className="t-400 c-gray-400">#{id}, {moment(updatedAt).format('MMM, Do, hha')}</div>
               </div>
               <div className="p-3 bg-gray-100">

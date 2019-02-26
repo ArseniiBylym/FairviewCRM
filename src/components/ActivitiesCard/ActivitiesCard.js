@@ -61,7 +61,7 @@ class ActivitiesCard extends Component {
                 <div className="px-3 pb-0 pt-3">
                     <div className="media mb-3"><img className="icon-16 mt-1 mr-3 ml-1" src={iconHome} alt="user icon" />
                     <div className="media-body">
-                        <div className="t-400">{provider.legalBusName}</div>
+                        {/* <div className="t-400">{provider.legalBusName}</div> */}
                     </div>
                     </div>
                     <div className="media"><img className="icon-16 mt-1 mr-3 ml-1" src={iconUser} alt="home icon" />
