@@ -16,6 +16,39 @@ class LeadSidebar extends Component {
 
     state = {
         details: {
+            // dba: {
+            //     name: 'plAddress1',
+            //     label: 'DBA',
+            //     value: '',
+            //     type: 'input'
+            // },
+            // legalBusName: {
+            //     name: 'plAddress2',
+            //     label: 'Legal Business Name',
+            //     value: '',
+            //     type: 'select'
+            // },
+            // groupId: {
+            //     name: 'plCity',
+            //     lagel: 'Budiness Group',
+            //     value: '',
+            //     type: 'select',
+            //     options: []
+            // },
+            // relationType: {
+            //     name: 'plState',
+            //     lagel: 'Type',
+            //     value: '',
+            //     type: 'select',
+            //     options: []
+            // },
+            // drugLicenseType: {
+            //     name: 'plZipcode',
+            //     lagel: 'Licence Type',
+            //     value: '',
+            //     type: 'select',
+            //     options: []
+            // },
             dba: '',
             legalBusName: '',
             groupId: '',
@@ -136,6 +169,10 @@ class LeadSidebar extends Component {
 
                 </ModalTemp>
                 <ModalTemp header="Edit address" id="addressModal" withRemoveButton={false}>
+                        {/* {this.state.address.map(item => {
+                            return (<Input key={item.name} onChange={this.editInputHandler} dataType='address' name={item.name} label={item.label} value={item.value} /> )
+                        }} */}
+
                     <Input onChange={this.editInputHandler} dataType="address" name="plAddress1" label='Address 1' value={this.props.store.Leads.currentLead.plAddress1} />
                     <Input onChange={this.editInputHandler} dataType="address" name="plAddress2" label='Address 2' value={this.props.store.Leads.currentLead.plAddress2} />
                     <Input onChange={this.editInputHandler} dataType="address" name="plCity" label='City' value={this.props.store.Leads.currentLead.plCity} />
@@ -148,13 +185,13 @@ class LeadSidebar extends Component {
                     <Input onChange={this.editInputHandler} dataType="contact" name="contactEmail" label='Email' value={this.props.store.Leads.currentLead.plFax} />
                 </ModalTemp>
                 <ModalTemp saveAction={this.saveContactPersonHandler} header="Create contact person" id="createPersonContacts" withRemoveButton={false}>
-                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="firstName" label='First name' value='' />
+                    <Input onChange={this.editInputHandler} required={true} dataType="createPersonContact" name="firstName" label='First name' value='' />
                     <Input onChange={this.editInputHandler} dataType="createPersonContact" name="middleName" label='Middle name' value='' />
-                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="lastName" label='Last name' value='' />
+                    <Input onChange={this.editInputHandler} required={true} dataType="createPersonContact" name="lastName" label='Last name' value='' />
                     <Input onChange={this.editInputHandler} dataType="createPersonContact" name="title" label='Title' value='' />
                     <Input onChange={this.editInputHandler} dataType="createPersonContact" name="officePhone" label='Office phone' value='' />
                     <Input onChange={this.editInputHandler} dataType="createPersonContact" name="fax" label='Fax' value='' />
-                    <Checkbox label='Primary contact' checked={false} />
+                    {/* <Checkbox label='Primary contact' checked={false} /> */}
                 </ModalTemp>
             </div>
         );
@@ -174,8 +211,8 @@ class LeadSidebar extends Component {
     }
 
     saveContactPersonHandler = () => {
-        if(!this.state.createContact.firstName || !this.state.createContact.lastName) return false;
-        LeadsActions.createNewContact(this.state.createContact);
+        if(!this.state.createPersonContact.firstName || !this.state.createPersonContact.lastName) return false;
+        LeadsActions.createNewContact(this.state.createPersonContact);
     }
 
 
