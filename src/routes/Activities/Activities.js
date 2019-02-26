@@ -46,7 +46,7 @@ class Activities extends Component {
                         </div>
                     </div>
                     <SearchForm searchAction={(value) => ActivitiesActions.searchFieldHandler(value)}>
-                        <FilterSelect title={"Type"} id={"filter-type"} options={types}/>
+                        <FilterSelect title={"Type"} id={"filter-type"} options={types} selectAction={value => ActivitiesActions.changeType(value)}/>
                         <div className="col-xl-3 col-lg-6">
                             <DateRangePicker startDate="1/1/2016" endDate="1/1/2020" className="col-xl-3 col-lg-6" onApply={(e, picker) => ActivitiesActions.setDatePickerDateField(picker.startDate, picker.endDate)}>
                                 <DateRangeSelect />
