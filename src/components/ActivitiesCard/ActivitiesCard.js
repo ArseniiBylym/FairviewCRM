@@ -53,7 +53,8 @@ class ActivitiesCard extends Component {
                 <div className="col-sm-6 col-lg-4 col-xl-3">
                 <div className="c-card c-card-shadow p-0">
                 <div className="p-3 border-bottom"><a href="lead.html">
-                    <div className="t-600-h text-truncate">{activityType}</div></a>
+                    {/* <div className="t-600-h text-truncate">{activityType.name}</div></a> */}
+                    <div className="t-600-h text-truncate">{typeof(activityType) == 'string' ? activityType : activityType.name}</div></a>
                     <div className="t-400 c-gray-400">{moment(createdAt).format('MMM Do, h:mma')}</div>
                 </div>
                 <div className="px-3 pb-0 pt-3">
@@ -69,11 +70,12 @@ class ActivitiesCard extends Component {
                     </div>
                     </div>
                 </div>
-                <div className="p-3">
+                {/* <div className="p-3">
                     {status === "O" && <button className="btn btn-accent btn-block" type="button" onClick={() => this.makeComplete()}>Make complete</button>}
-                </div>
+                </div> */}
                 </div>
             </div>
+            // <div>hello</div>
         )}
 }
 

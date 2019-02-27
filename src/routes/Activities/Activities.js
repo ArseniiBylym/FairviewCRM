@@ -59,6 +59,7 @@ class Activities extends Component {
 
         if(this.props.store.Activities.filteredActivities.length > 0) {
             activities = this.props.store.Activities.filteredActivities.map(item => {
+                console.log(item);
                 return (
                     <ActivitiesCard key={item.id} config={item}/>
                 )

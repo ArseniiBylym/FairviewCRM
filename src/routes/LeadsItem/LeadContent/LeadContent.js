@@ -35,8 +35,8 @@ class LeadContent extends Component {
                 </section>
                 <section>
                     <div className="p-2r pb-0">
-                        <Route exact path={Routes.LEADS_ITEM_CONTENT} component={CustomerRoutes} />
-                        {/* <Redirect exact from='customers/:id' to={`/customers/${id}/content-activities`}/>   */}
+                        <Route path={Routes.LEADS_ITEM_CONTENT} component={CustomerRoutes} />
+                        <Redirect exact from='customers/:id' to={`/customers/${id}/content-activities`}/>  
                     </div>
                 </section>
                </div>

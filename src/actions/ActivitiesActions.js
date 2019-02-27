@@ -20,6 +20,7 @@ export class ActivitiesActionsClass {
         if(result.data.data) {
             const activitiesArray = result.data.data.map((item, i) => {
 
+                // return item
                 return {
                     id: item.id,
                     status: item.status,
