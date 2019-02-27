@@ -24,7 +24,7 @@ class LeadsCard extends Component {
 
 
     render() {
-        const { databaseId, providerId, legalBusName, dba, plCity, plState, plZipcode, plPhone, lastCompletedActivity } = this.props.config;
+        const { databaseId, contactFName, contactLName, providerId, legalBusName, dba, plCity, plState, plZipcode, plPhone, lastCompletedActivity } = this.props.config;
 
         return (
             <div className="LeadsCard col-sm-6 col-lg-4 col-xl-3">
@@ -36,7 +36,7 @@ class LeadsCard extends Component {
                 <div className="p-3">
                     <div className="media"><img className="icon-16 mt-1 mr-3 ml-1" src={iconUser} alt="user icon" />
                         <div className="media-body">
-                            <div className="t-400">Johnatan Doe</div>
+                            <div className="t-400">{contactFName} {contactLName}</div>
                             <div className="t-400 c-gray-400">{plPhone}</div>
                         </div>
                     </div>
