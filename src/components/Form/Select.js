@@ -10,7 +10,7 @@ class Select extends Component {
                 <select onChange ={onChange} name={name} data-type={dataType} className="form-control" id="l-details-edit-business-type">
                     {options.map((item, i) => {
                         return (
-                            <option key={item.value} keyvalue={item.value} value={item.value}>{item.label}</option>
+                            <option key={item.value} selected={item.selected} keyvalue={item.value} value={item.value}>{item.label}</option>
                         )
                     })}
                 </select>

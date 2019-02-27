@@ -15,6 +15,7 @@ import PageNotFound from '../routes/PageNotFound/PageNotFound';
 import Modal from '../components/Modal/Modal'
 import PricingRequestItem from './PricingRequestItem/PricingRequestItem'
 import EmptyPage from '../components/EmptyPage/EmptyPage'
+import PricingRequestCreate from './PricingRequestCreate/PricingRequestCreate';
 
 @inject('store')
 @observer
@@ -25,6 +26,7 @@ class MainRoutes extends Component {
                     <MainHeader />
                     <div className="mainContentWrapper">
                     <Switch>
+                        <Route exact path={Routes.PRICING_REQUESTS_CREATE} component={PricingRequestCreate} /> {/* Test pricing-request-create route */}
                         <Route exact path={Routes.LEADS} component={Leads} />
                         <Route exact path={Routes.LEADS_ITEM} component={LeadsItem} />
                         <Route exact path={Routes.ACTIVITES} component={Activities} />

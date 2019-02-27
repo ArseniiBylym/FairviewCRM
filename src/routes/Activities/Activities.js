@@ -6,6 +6,7 @@ import IconPlus from '../../resources/img/icon-plus-white.svg';
 import DateRangeSelect from '../../components/SearchForm/DateRangeSelect/DateRangeSelect';
 import FilterSelect from '../../components/SearchForm/FilterSelect/FilterSelect';
 import Input from '../../components/Form/Input';
+import TextArea from '../../components/Form/TextArea';
 import { ActivitiesActions } from '../../actions/AllActions'
 import { ModalActions } from '../../actions/AllActions'
 import ModalTemp from '../../components/ModalTemp/ModalTemp'
@@ -18,14 +19,25 @@ import { ActivitiesStore } from '../../store/AllStores';
 @inject('store')
 @observer
 class Activities extends Component {
+    state = {
+        // note: 'Test',
+        providerId: 'C00085B',
+        activityTypeId: 1,
+        remind: true,
+        activityTime: '2019-02-26T09:00:36.000Z',
+        // remindAt: null,
+        // remindBefore: null,
+        activityType: null,
+        desciption: ''
+    }
 
     testHandler() {
         ActivitiesActions.createActivity()
     }
 
-    postAndFetchActivity(data) {
-        console.log(this.props.store)
-        ActivitiesActions.postNewActivity(data)
+    postAndFetchActivity() {
+        const inputsValues = this.state
+        ActivitiesActions.postNewActivity(inputsValues)
     }
 
     createActivity() {
@@ -93,19 +105,30 @@ class Activities extends Component {
                 <button className="button-floating" type="button" data-toggle="modal" data-target="#activityCreateModal" onClick={() => this.createActivity()}>
                     <span className="icon"><img src={IconPlus} /></span><span className="text">Create activity</span>
                 </button>
-                <ModalTemp header="Edit details" id="activityCreateModal" withRemoveButton={false} saveAction={data => this.postAndFetchActivity(data)}>
-                    <Input label='Note' value={'TEST'}  />
-                    <Input label='Provider ID' value={'C00085B'}  />
-                    <Input label='Activity Type ID' value={1}  />
-                    <Input label='Remind' value={true}  />
-                    <Input label='Activity Time' value={'2019-02-26T09:00:36.000Z'}  />
-                    <Input label='Remind At' value={null}  />
-                    <Input label='Remind Before' value={null}  />
-                    <Select label='Activity Type' 
-                        options={[{value: 'All', selected: true}, ...ActivitiesStore.types.map(item => {
-                            return {value: item.name, id: item.id, selected: false}
-                        })]} 
+                <ModalTemp saveAction={(inpu) => this.postAndFetchActivity()} header="Edit details" id="activityCreateModal" withRemoveButton={false}>
+                    <Select onChange={(e) => this.setState({activityType: e.target.value})} label='Activity Type' value={this.state.activityType}
+                        options={[{value: 'All', label: 'All'}, ...ActivitiesStore.types.map(item => {
+                            return {value: item.name, id: item.id, label: item.name}
+                        })]}
                     />
+                    <DateRangePicker startDate="1/1/2016" endDate="1/1/2020" className="col-xl-3 col-lg-6" onApply={(e, picker) => ActivitiesActions.setDatePickerDateField(picker.startDate, picker.endDate)}>
+                                <DateRangeSelect title='Due Date'/>
+                    </DateRangePicker>
+                    <Select onChange={(e) => this.setState({remind: e.target.value === 'Not remind' ? false : true})} label='Remind' value={this.state.remind}
+                        options={[
+                            {value: 'Remind', label: 'Remind'},
+                            {value: 'Not remind', label: 'Not remind'},
+                        ]}
+                    />
+                    <TextArea onChange={(e) => this.setState({desciption: e.target.value})} label='Desciption'/>
+                    {/* <Input onChange={(e) => this.setState({note: e.target.value})} label='Note' value={this.state.note}  />
+                    <Input onChange={(e) => this.setState({providerId: e.target.value})} label='Provider ID' value={this.state.providerId}  />
+                    <Input onChange={(e) => this.setState({activityTypeId: e.target.value})} label='Activity Type ID' value={this.state.activityTypeId}  />
+                    <Input onChange={(e) => this.setState({remind: e.target.value})} label='Remind' value={this.state.remind}  />
+                    <Input onChange={(e) => this.setState({activityTime: e.target.value})} label='Activity Time' value={this.state.activityTime}  />
+                    <Input onChange={(e) => this.setState({remindAt: e.target.value})} label='Remind At' value={this.state.remindAt}  />
+                    <Input onChange={(e) => this.setState({remindBefore: e.target.value})} label='Remind Before' value={this.state.remindBefore}  /> */}
+                    
                     {/* <div className="form-group">
                       <button className="btn btn-light" type="button">Manage Business Groups</button>
                     </div>
