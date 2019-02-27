@@ -99,7 +99,7 @@ class LeadSidebar extends Component {
     // }
 
     render() {
-        const {legalBusName, license, plAddress1, plCity, plState, plZipcode, plPhone, plFax, plEmail, contactLName, contactFName, contactMInitial, 
+        const {legalBusName, license, plAddress1, plAddress2, plCity, plState, plZipcode, plPhone, plFax, plEmail, contactLName, contactFName, contactMInitial, 
             contactTitle, contactPhone, contactExt, contactEmail, salesReps } = this.props.config;
         return (
             <div className="LeadSidebar page-sidebar">
@@ -110,18 +110,22 @@ class LeadSidebar extends Component {
                         <SidebarDetailsRow name='Group' value={null} />
                         <SidebarDetailsRow name='Type' value={null} />
                     </LeadSidebarCard>
-                    <LeadSidebarCard withBorder={true} withEditButton={true} relatedModalId="addressModal" header='Address'>
+                    <LeadSidebarCard editHandler={this.initAddressModalData} withBorder={true} withEditButton={true} relatedModalId="addressModal" header='Address'>
                         <div className="row">
                             <div className="col-12">
-                                <div className="c-gray-500">{`${plAddress1}, ${plCity}, ${plState}, ${plZipcode}, ${plPhone}, ${plFax}, ${plEmail}`}</div>
+                                <div className="c-gray-500">
+                                    {plAddress1 && <p>{plAddress1}</p>}
+                                    {plAddress2 && <p>{plAddress2}</p>}
+                                    <p>{`${plCity}, ${plState}, ${plZipcode}`}</p>
+                                </div>
                             </div>
                         </div>
                     </LeadSidebarCard>
                     <LeadSidebarCard editHandler={this.initContactModalData} withBorder={true} withEditButton={true} relatedModalId="contactsModal" header='Contact'>
                         <div className="row">
                             <div className="col-12">
-                                <div className="c-gray-500">{`P. ${contactPhone} (ext. ${contactExt})`}</div>
-                                <div className="c-gray-500">{`F: ${plFax}`}</div>
+                                <div className="c-gray-500">{`P. ${contactPhone ? contactPhone : ''} (ext. ${contactExt ? contactExt : ''})`}</div>
+                                <div className="c-gray-500">{`F: ${plFax ? plFax : ''}`}</div>
                                 <div className="c-gray-500">{`E: ${contactEmail}`}</div>
                             </div>
                         </div>
@@ -168,11 +172,11 @@ class LeadSidebar extends Component {
                             return (<Input key={item.name} onChange={this.editInputHandler} dataType='address' name={item.name} label={item.label} value={item.value} /> )
                         }} */}
 
-                    <Input onChange={this.editInputHandler} dataType="address" name="plAddress1" label='Address 1' value={this.props.store.Leads.currentLead.plAddress1} />
-                    <Input onChange={this.editInputHandler} dataType="address" name="plAddress2" label='Address 2' value={this.props.store.Leads.currentLead.plAddress2} />
-                    <Input onChange={this.editInputHandler} dataType="address" name="plCity" label='City' value={this.props.store.Leads.currentLead.plCity} />
-                    <Input onChange={this.editInputHandler} dataType="address" name="plState" label='State' value={this.props.store.Leads.currentLead.plState} />
-                    <Input onChange={this.editInputHandler} dataType="address" name="plZipcode" label='Zip-code' value={this.props.store.Leads.currentLead.plZipcode} />
+                    <Input onChange={this.editInputHandler} dataType="address" name="plAddress1" label='Address 1' value={this.state.address.plAddress1} />
+                    <Input onChange={this.editInputHandler} dataType="address" name="plAddress2" label='Address 2' value={this.state.address.plAddress2} />
+                    <Input onChange={this.editInputHandler} dataType="address" name="plCity" label='City' value={this.state.address.plCity} />
+                    <Input onChange={this.editInputHandler} dataType="address" name="plState" label='State' value={this.state.address.plState} />
+                    <Input onChange={this.editInputHandler} dataType="address" name="plZipcode" label='Zip-code' value={this.state.address.plZipcode} />
                 </ModalTemp>
                 <ModalTemp saveAction={this.saveContactHandler} closeAction={this.clearContactModalData} header="Edit contacts" id="contactsModal" withRemoveButton={false}>
                     <Input onChange={this.editInputHandler} dataType="contact" name="contactPhone" label='Phone number' value={this.state.contact.contactPhone} />
@@ -192,6 +196,22 @@ class LeadSidebar extends Component {
         );
     }
 
+    initAddressModalData = () => {
+        const address1 = this.props.store.Leads.currentLead.plAddress1;
+        const address2 = this.props.store.Leads.currentLead.plAddress2;
+        const city = this.props.store.Leads.currentLead.plCity;
+        const state = this.props.store.Leads.currentLead.plState;
+        const zipCode = this.props.store.Leads.currentLead.plZipcode;
+        this.setState({
+            address: {
+                plAddress1: address1,
+                plAddress2: address2,
+                plCity: city,
+                plState: state,
+                plZipcode: zipCode,
+            }
+        })
+    }
 
     initContactModalData = () => {
         const phone = this.props.store.Leads.currentLead.contactPhone
