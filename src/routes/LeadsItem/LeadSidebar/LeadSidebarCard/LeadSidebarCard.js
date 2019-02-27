@@ -4,7 +4,7 @@ import iconEdit from '../../../../resources/img/icon-edit.svg'
 class LeadSidebarCard extends Component {
     render() {
         return (
-            <div className={`p-2r ${this.props.withBorder ? 'border-bottom' : ''}`}>
+            <div className={`p-2r ${this.props.withBorder ? 'border-bottom' : ''} text-left`}>
                 {/* <a onClick={this.props.editHandler} href="#" data-toggle="modal" data-target="#mainModal"> */}
                 <a onClick={this.props.editHandler} href="#" data-toggle="modal" data-target={`#${this.props.relatedModalId}`}>
                     <div className="d-flex mb-4">

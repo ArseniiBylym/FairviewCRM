@@ -98,11 +98,13 @@ export class Leads {
 
     @computed get filteredLeads() {
         return this.leads.filter((item, i) => {
-                const leadItem = item.legalBusName.trim().toLowerCase().indexOf(this.searchField)
+                const fullName = `${item.contactFName} ${item.contactLName}`
+                const test = fullName.trim().toLowerCase().indexOf(this.searchField)
+                const leadItem = item.legalBusName.trim().toLowerCase().indexOf(this.searchField)/*  || fullName.trim().toLowerCase().indexOf(this.searchField) */
                 // const a = Date.parse(this.datePickerDate[0]) < Date.parse(item.lastCompletedActivity.createdAt.split('T')[0]) ? Date.parse(item.lastCompletedActivity.createdAt.split('T')[0]) : Date.parse(this.datePickerDate[0])
                 
                 if(this.filterByGroup === 'All') {
-                    return leadItem !== -1 /*  && a < Date.parse(this.datePickerDate[1]) */
+                    return leadItem !== -1 || test !== -1  /*  && a < Date.parse(this.datePickerDate[1]) */
                 } else {
                     return leadItem !== -1 && item.custgorupCode === +this.filterByGroup/*  && a < Date.parse(this.datePickerDate[1]) */
                 }

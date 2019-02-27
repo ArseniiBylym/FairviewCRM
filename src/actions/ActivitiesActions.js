@@ -29,6 +29,7 @@ export class ActivitiesActionsClass {
                     provider: item.provider,
                     dba: item.dba,
                     activityType: item.activityType.name,
+                    activityTypeId: item.activityTypeId,
                     updatedAt: item.updatedAt
                 }
             })
@@ -42,18 +43,10 @@ export class ActivitiesActionsClass {
         ActivitiesStore.activities.push(activity)
     }
 
-    @action async postNewActivity(data) {
-        console.log(data)
-        const body = JSON.stringify({
-            note: data[0],
-            providerId: data[1],
-            activityTypeId: data[2],
-            remind: data[3],
-            activityTime: data[4],
-            remindAt: data[5],
-            remindBefore: data[6],
-            activityType: data[7].value
-        })
+    @action async postNewActivity(inputsValues) {
+        console.log(inputsValues)
+
+        const body = JSON.stringify(inputsValues)
 
         const token = UserStore.accessToken
         const result = await fetchFromApi(URL_PATH.ACTIVITY, {

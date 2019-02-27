@@ -11,7 +11,7 @@ class DateRangeSelect extends Component {
     render() {
         return (
             <div className="form-group">
-              <label htmlFor="filter-date-range">Date Range</label>
+              <label htmlFor="filter-date-range">{this.props.title ? this.props.title : "Date Range"}</label>
               <div className="input-group">
                 <input className="form-control date-range-picker" type="text" id="filter-date-range" value={`${startOfMonth} - ${endOfMonth}`} />
                 <div className="input-group-append">

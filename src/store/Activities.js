@@ -15,11 +15,11 @@ export class Activities {
             if( item.createdByUser ) {
                 const activityItem = item.createdByUser.name.trim().toLowerCase().indexOf(this.searchField)
                 const a = Date.parse(this.datePickerDate[0]) < Date.parse(item.createdAt.split('T')[0]) ? Date.parse(item.createdAt.split('T')[0]) : Date.parse(this.datePickerDate[0])
-    
+
                 if(this.filterByType === 'All') {
                     return activityItem !== -1 && a < Date.parse(this.datePickerDate[1])
                 } else {
-                    return activityItem !== -1 && item.id === +this.filterByType && a < Date.parse(this.datePickerDate[1])
+                    return activityItem !== -1 && item.activityTypeId === +this.filterByType && a < Date.parse(this.datePickerDate[1])
                 }
             }
         })
