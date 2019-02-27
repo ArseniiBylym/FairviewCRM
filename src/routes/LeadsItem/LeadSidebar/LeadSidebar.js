@@ -16,42 +16,12 @@ class LeadSidebar extends Component {
 
     state = {
         details: {
-            // dba: {
-            //     name: 'plAddress1',
-            //     label: 'DBA',
-            //     value: '',
-            //     type: 'input'
-            // },
-            // legalBusName: {
-            //     name: 'plAddress2',
-            //     label: 'Legal Business Name',
-            //     value: '',
-            //     type: 'select'
-            // },
-            // groupId: {
-            //     name: 'plCity',
-            //     lagel: 'Budiness Group',
-            //     value: '',
-            //     type: 'select',
-            //     options: []
-            // },
-            // relationType: {
-            //     name: 'plState',
-            //     lagel: 'Type',
-            //     value: '',
-            //     type: 'select',
-            //     options: []
-            // },
-            // drugLicenseType: {
-            //     name: 'plZipcode',
-            //     lagel: 'Licence Type',
-            //     value: '',
-            //     type: 'select',
-            //     options: []
-            // },
             dba: '',
             legalBusName: '',
-            groupId: '',
+            groupId: {
+                value: '',
+                options: []
+            },
             relationType: '',
             drugLicenseType: '',
             fetched: false,
@@ -80,23 +50,57 @@ class LeadSidebar extends Component {
         },
     }
 
-    // editDbaHandler = e => {
-    //     LeadsActions.editCurrentLead('dba', e.target.value)
-    // }
+   
+    initDetailsModalHandler = () => {
+        const dba = this.props.store.Leads.currentLead.dba;
+        const legalBusName = this.props.store.Leads.currentLead.legalBusName;
+        const options = this.props.store.Leads.customerGroups.map((item, i) => {
+            return {value: item.groupCode, label: item.groupName}
+        })
+        const selectedGroup = options.find((item, i) => {
+            return item.value == this.props.store.Leads.currentLead.providerGroup
+        })
+        this.setState({
+            details: {
+                dba: dba,
+                legalBusName: legalBusName,
+                groupId: {
+                    value: selectedGroup && selectedGroup.value,
+                    options: options
+                },
+            }
+        })
+    }
 
-    // editDetailsData = () => {
-    //     ModalActions.configModalData({
-    //         header: 'Edit details',
-    //         withRemoveButton: false,
-    //         content:<Fragment>
-    //                     <Input config={{
-    //                         label: 'DBA', 
-    //                         value: this.props.store.Leads.currentLead.dba,
-    //                         onChange: this.editDbaHandler
-    //                     }}/>
-    //                 </Fragment>
-    //     })
-    // }
+    initAddressModalData = () => {
+        const address1 = this.props.store.Leads.currentLead.plAddress1;
+        const address2 = this.props.store.Leads.currentLead.plAddress2;
+        const city = this.props.store.Leads.currentLead.plCity;
+        const state = this.props.store.Leads.currentLead.plState;
+        const zipCode = this.props.store.Leads.currentLead.plZipcode;
+        this.setState({
+            address: {
+                plAddress1: address1,
+                plAddress2: address2,
+                plCity: city,
+                plState: state,
+                plZipcode: zipCode,
+            }
+        })
+    }
+
+    initContactModalData = () => {
+        const phone = this.props.store.Leads.currentLead.contactPhone
+        const ext = this.props.store.Leads.currentLead.contactExt
+        const email = this.props.store.Leads.currentLead.contactEmail
+        this.setState({
+            contact: {
+                contactPhone: phone,
+                contactExt: ext,
+                contactEmail: email,
+            },
+        })
+    }
 
     render() {
         const {legalBusName, license, plAddress1, plAddress2, plCity, plState, plZipcode, plPhone, plFax, plEmail, contactLName, contactFName, contactMInitial, 
@@ -104,7 +108,7 @@ class LeadSidebar extends Component {
         return (
             <div className="LeadSidebar page-sidebar">
                 <div className="position-sticky-0">
-                    <LeadSidebarCard withBorder={true} withEditButton={true} relatedModalId="detailsModal" editHandler={this.editDetailsData} header='Details'>
+                    <LeadSidebarCard editHandler={this.initDetailsModalHandler} withBorder={true} withEditButton={true} relatedModalId="detailsModal" header='Details'>
                         <SidebarDetailsRow name='Legal' value={legalBusName} />
                         <SidebarDetailsRow name='Rep' value={null} />
                         <SidebarDetailsRow name='Group' value={null} />
@@ -146,32 +150,19 @@ class LeadSidebar extends Component {
                         </div>
                     </LeadSidebarCard>
                 </div>
-                <ModalTemp header="Edit details" id="detailsModal" withRemoveButton={false}>
-                    <Input onChange={this.editInputHandler} dataType="details" name="dba"  label='DBA' value={this.props.store.Leads.currentLead.dba}  />
-                    <Input onChange={this.editInputHandler} dataType="details" name="legalBusName"  label='Legal Business Name' value={this.props.store.Leads.currentLead.legalBusName}  />
-                    <Input onChange={this.editInputHandler} dataType="details" name="plAddress1"  label='Business Group' value={``}  />
+                <ModalTemp saveAction={this.saveDetailsHandler} closeAction={this.clearDetailsModalData} header="Edit details" id="detailsModal" withRemoveButton={false}>
+                    <Input onChange={this.editInputHandler} dataType="details" name="dba"  label='DBA' value={this.state.details.dba}  />
+                    <Input onChange={this.editInputHandler} dataType="details" name="legalBusName"  label='Legal Business Name' value={this.state.details.legalBusName}  />
+                    <Select onChange={this.editSelectHandler} label='Business Group' dataType="details" name="groupId" value={this.state.details.groupId.value} 
+                        options={this.state.details.groupId.options.map((item,i) => {
+                            return ({value: item.value, label: item.label})
+                        })}
+                    />
                     <div className="form-group">
                       <button className="btn btn-light" type="button">Manage Business Groups</button>
                     </div>
-                    <Select label='Type' 
-                        options={[
-                            {value: 'Chain', selected: true},
-                            {value: 'Distributor', selected: false},
-                        ]} 
-                    />
-                     <Select label='Licence Type' 
-                        options={[
-                            {value: 'Precursor', selected: true},
-                            {value: 'DEA', selected: false},
-                        ]} 
-                    />
-
                 </ModalTemp>
-                <ModalTemp header="Edit address" id="addressModal" withRemoveButton={false}>
-                        {/* {this.state.address.map(item => {
-                            return (<Input key={item.name} onChange={this.editInputHandler} dataType='address' name={item.name} label={item.label} value={item.value} /> )
-                        }} */}
-
+                <ModalTemp saveAction={this.saveAddressHandler} closeAction={this.clearAddressModalData} header="Edit address" id="addressModal" withRemoveButton={false}>
                     <Input onChange={this.editInputHandler} dataType="address" name="plAddress1" label='Address 1' value={this.state.address.plAddress1} />
                     <Input onChange={this.editInputHandler} dataType="address" name="plAddress2" label='Address 2' value={this.state.address.plAddress2} />
                     <Input onChange={this.editInputHandler} dataType="address" name="plCity" label='City' value={this.state.address.plCity} />
@@ -183,52 +174,35 @@ class LeadSidebar extends Component {
                     <Input onChange={this.editInputHandler} dataType="contact" name="contactExt" label='Phone number extension' value={this.state.contact.contactExt} />
                     <Input onChange={this.editInputHandler} dataType="contact" name="contactEmail" label='Email' value={this.state.contact.contactEmail} />
                 </ModalTemp>
-                <ModalTemp saveAction={this.saveContactPersonHandler} header="Create contact person" id="createPersonContacts" withRemoveButton={false}>
-                    <Input onChange={this.editInputHandler} required={true} dataType="createPersonContact" name="firstName" label='First name' value='' />
-                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="middleName" label='Middle name' value='' />
-                    <Input onChange={this.editInputHandler} required={true} dataType="createPersonContact" name="lastName" label='Last name' value='' />
-                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="title" label='Title' value='' />
-                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="officePhone" label='Office phone' value='' />
-                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="fax" label='Fax' value='' />
+                <ModalTemp saveAction={this.saveContactPersonHandler} closeAction={this.clearContactPersonModalData} header="Create contact person" id="createPersonContacts" withRemoveButton={false}>
+                    <Input onChange={this.editInputHandler} required={true} dataType="createPersonContact" name="firstName" label='First name' value={this.state.createPersonContact.firstName} />
+                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="middleName" label='Middle name' value={this.state.createPersonContact.middleName} />
+                    <Input onChange={this.editInputHandler} required={true} dataType="createPersonContact" name="lastName" label='Last name' value={this.state.createPersonContact.lastName} />
+                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="title" label='Title' value={this.state.createPersonContact.title} />
+                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="officePhone" label='Office phone' value={this.state.createPersonContact.officePhone} />
+                    <Input onChange={this.editInputHandler} dataType="createPersonContact" name="fax" label='Fax' value={this.state.createPersonContact.fax} />
                     {/* <Checkbox label='Primary contact' checked={false} /> */}
                 </ModalTemp>
             </div>
         );
     }
 
-    initAddressModalData = () => {
-        const address1 = this.props.store.Leads.currentLead.plAddress1;
-        const address2 = this.props.store.Leads.currentLead.plAddress2;
-        const city = this.props.store.Leads.currentLead.plCity;
-        const state = this.props.store.Leads.currentLead.plState;
-        const zipCode = this.props.store.Leads.currentLead.plZipcode;
-        this.setState({
-            address: {
-                plAddress1: address1,
-                plAddress2: address2,
-                plCity: city,
-                plState: state,
-                plZipcode: zipCode,
-            }
-        })
-    }
 
-    initContactModalData = () => {
-        const phone = this.props.store.Leads.currentLead.contactPhone
-        const ext = this.props.store.Leads.currentLead.contactExt
-        const email = this.props.store.Leads.currentLead.contactEmail
+//Clear handlers on modals close action
+clearContactPersonModalData = () => {
         this.setState({
-            contact: {
-                contactPhone: phone,
-                contactExt: ext,
-                contactEmail: email,
+            createPersonContact: {
+                firstName: '',
+                lastName:'',
+                middleName: '',
+                title: '',
+                officePhone: '',
+                fax: '',
+                emailAddress: '',
+                fetched: false,
             },
         })
     }
-    saveContactHandler = () => {
-        
-    }
-
     clearContactModalData = () => {
         this.setState({
             contact: {
@@ -238,9 +212,54 @@ class LeadSidebar extends Component {
             },
         })
     }
+    clearAddressModalData = () => {
+        this.setState({
+            address: {
+                plAddress1: '',
+                plAddress2: '',
+                plCity: '',
+                plState: '',
+                plZipcode: '',
+            },
+        })
+    }
+    clearDetailsModalData = () => {
+        this.setState({
+            details: {
+                dba: '',
+                legalBusName: '',
+                groupId: {
+                    value: '',
+                    options: []
+                },
+                relationType: '',
+                drugLicenseType: '',
+                fetched: false,
+            },
+        })
+    }
 
-   
+    //Modals save button handlers
+    saveDetailsHandler = () => {
+        LeadsActions.updateCustomerData({
+            dba: this.state.details.dba,
+            legalBusName: this.state.details.legalBusName,
+            groupId: this.state.details.groupId.value
+        });
+    }
+    saveAddressHandler = () => {
+        LeadsActions.updateCustomerData(this.state.address)
+    }
+    saveContactHandler = () => {
+        LeadsActions.updateCustomerData(this.state.contact)
+    }
+    saveContactPersonHandler = () => {
+        if(!this.state.createPersonContact.firstName || !this.state.createPersonContact.lastName) return false;
+        LeadsActions.createNewContact(this.state.createPersonContact);
+    }
 
+
+//Inputs and selects handlers
     editInputHandler = e => {
         console.log(e.target.name)
         const type = e.target.dataset.type;
@@ -251,27 +270,22 @@ class LeadSidebar extends Component {
             }
         })
     }
-
-    saveContactPersonHandler = () => {
-        if(!this.state.createPersonContact.firstName || !this.state.createPersonContact.lastName) return false;
-        LeadsActions.createNewContact(this.state.createPersonContact);
+    editSelectHandler = (e) => {
+        const type = e.target.dataset.type;
+        const name = e.target.name;
+        this.setState({
+            [type]: {
+                ...this.state[type],
+                [name]: {
+                    options: this.state[type][name].options.slice(),
+                    value: e.target.value
+                }
+            }
+        })
     }
+    //Inputs and selects handlers
 
-
-    // editMainContactHandler = e => {
-    //     this.setState({
-    //         createPersonContact: {
-    //             ...this.state.createPersonContact,
-    //             [e.target.name]: e.target.value
-    //         }
-    //     })
-    // }
-
-    // saveMainContactHandler = () => {
-    //     if(!this.state.createPersonContact.firstName || !this.state.createPersonContact.lastName) return false;
-    //     LeadsActions.createNewContact(this.state.createPersonContact);
-    // }
-
+    
 }
 
 export default LeadSidebar;

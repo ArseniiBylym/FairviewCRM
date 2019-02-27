@@ -7,7 +7,7 @@ class Input extends Component {
         return (
             <div className="form-group formGroup-alignStart">
                 <label htmlFor="edit-input mr-auto">{label} {required && <span className="requiredAsterisk">*</span>}</label>
-                <input name={name} data-type={dataType} onChange={onChange} defaultValue={value} className="form-control" type="text" id="edit-input" />
+                <input name={name} data-type={dataType} onChange={onChange} value={value} className="form-control" type="text" id="edit-input" />
             </div>
         )
     }

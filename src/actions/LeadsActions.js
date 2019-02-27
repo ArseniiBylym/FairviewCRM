@@ -75,6 +75,23 @@ export class LeadsActionsClass {
 
     } 
 
+    @action async updateCustomerData(data) {
+        const body = JSON.stringify({
+            ...data,
+            providerId: LeadsStore.currentLead.providerId
+        })
+        const token = UserStore.accessToken
+        const result = await fetchFromApi(URL_PATH.PROVIDER_CONTACT, {
+            method: 'post',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json" 
+            },
+            data: body
+        })
+        console.log(result);
+    }
+
     @action async createNewContact(data) {
 
         const body = JSON.stringify({
