@@ -76,27 +76,37 @@ export class LeadsActionsClass {
     } 
 
     @action async updateCustomerData(data) {
+        const providerId = LeadsStore.currentLead.providerId;
+        const databaseId = LeadsStore.currentLead.databaseId
+ 
         const body = JSON.stringify({
             ...data,
-            providerId: LeadsStore.currentLead.providerId
+            providerId: providerId
         })
         const token = UserStore.accessToken
-        const result = await fetchFromApi(URL_PATH.PROVIDER_CONTACT, {
-            method: 'post',
+        const result = await fetchFromApi(URL_PATH.PROVIDER + `/${databaseId}`, {
+            method: 'patch',
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json" 
             },
             data: body
         })
-        console.log(result);
+        console.log(result.data);
+        console.log(LeadsStore.currentLead)
+        if(result.data) {
+            LeadsStore.currentLead = result.data;
+        }
     }
 
     @action async createNewContact(data) {
 
+        const providerId = LeadsStore.currentLead.providerId;
+        const databaseId = LeadsStore.currentLead.databaseId
+
         const body = JSON.stringify({
             ...data,
-            providerId: LeadsStore.currentLead.providerId
+            providerId: providerId
         })
         const token = UserStore.accessToken
         const result = await fetchFromApi(URL_PATH.PROVIDER_CONTACT, {

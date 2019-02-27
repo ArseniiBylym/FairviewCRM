@@ -50,6 +50,10 @@ class LeadSidebar extends Component {
         },
     }
 
+    componentDidMount = async () => {
+        !this.props.store.Leads.customerGroups.length && await LeadsActions.fetchCustomerGroups()
+    }
+
    
     initDetailsModalHandler = () => {
         const dba = this.props.store.Leads.currentLead.dba;
@@ -105,12 +109,15 @@ class LeadSidebar extends Component {
     render() {
         const {legalBusName, license, plAddress1, plAddress2, plCity, plState, plZipcode, plPhone, plFax, plEmail, contactLName, contactFName, contactMInitial, 
             contactTitle, contactPhone, contactExt, contactEmail, salesReps } = this.props.config;
+        const customerGroup = this.props.store.Leads.customerGroups.find((item, i) => {
+            return item.groupCode == this.props.store.Leads.currentLead.groupId
+        })
         return (
             <div className="LeadSidebar page-sidebar">
                 <div className="position-sticky-0">
                     <LeadSidebarCard editHandler={this.initDetailsModalHandler} withBorder={true} withEditButton={true} relatedModalId="detailsModal" header='Details'>
                         <SidebarDetailsRow name='Legal' value={legalBusName} />
-                        <SidebarDetailsRow name='Rep' value={null} />
+                        <SidebarDetailsRow name='Rep' value={customerGroup && customerGroup.groupName} />
                         <SidebarDetailsRow name='Group' value={null} />
                         <SidebarDetailsRow name='Type' value={null} />
                     </LeadSidebarCard>
@@ -189,7 +196,7 @@ class LeadSidebar extends Component {
 
 
 //Clear handlers on modals close action
-clearContactPersonModalData = () => {
+    clearContactPersonModalData = () => {
         this.setState({
             createPersonContact: {
                 firstName: '',
