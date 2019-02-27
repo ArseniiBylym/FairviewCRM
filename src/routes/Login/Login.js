@@ -26,7 +26,7 @@ class Login extends Component {
             return 
         }
         await UserActions.login(this.state.name, this.state.password);
-        this.props.history.push('/leads')
+        this.props.history.push('/customers')
     }
 
     keyUpHandler = (e) => {

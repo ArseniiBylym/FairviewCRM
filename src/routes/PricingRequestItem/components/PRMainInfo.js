@@ -10,7 +10,7 @@ class PRMainInfoClass extends Component {
         e.preventDefault();
 
         LeadsActions.addToActiveTabs(this.props.leadId, this.props.lead);
-        this.props.history.push(`/leads/${this.props.leadId}`)
+        this.props.history.push(`/customers/${this.props.leadId}`)
     }
 
     render() {

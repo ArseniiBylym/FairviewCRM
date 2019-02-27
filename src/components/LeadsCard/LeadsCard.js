@@ -19,7 +19,7 @@ class LeadsCard extends Component {
         const title = this.props.config.legalBusName;
 
         LeadsActions.addToActiveTabs(id, title);
-        this.props.history.push(`/leads/${id}`)
+        this.props.history.push(`/customers/${id}`)
     }
 
 

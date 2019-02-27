@@ -16,14 +16,14 @@ class LeadTab extends Component {
         e.stopPropagation();
         LeadsActions.removeFromActiveTabs(this.props.id);
         if(+this.props.store.Leads.currentLead.databaseId === +this.props.id) {
-            this.props.history.push('/leads');
+            this.props.history.push('/customers');
         }
     }
 
     render() {
         return (
             <li>    
-                <NavLink to={`/leads/${this.props.id}`}>
+                <NavLink to={`/customers/${this.props.id}`}>
                     <div className="lead-name">{this.props.title}</div>
                     <div onClick={this.closeHandler} className="lead-close">
                         <img src={iconClose} alt='' />

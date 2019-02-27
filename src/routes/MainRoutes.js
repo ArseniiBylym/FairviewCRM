@@ -31,7 +31,8 @@ class MainRoutes extends Component {
                         <Route exact path={Routes.PRICING_REQUESTS} component={PricingRequests} />
                         <Route path={Routes.PRICING_REQUESTS_ITEM} component={PricingRequestItem} />
                         <Route path={Routes.EMPTY_PAGE} component={EmptyPage} />
-                        <Route exact path="/" component={Leads} />
+                        {/* <Route exact path="/" component={Leads} /> */}
+                        <Redirect exact from="/" to={Routes.LEADS} />
                         <Route path='/' component={PageNotFound} />
                     </Switch>
                     </div>
