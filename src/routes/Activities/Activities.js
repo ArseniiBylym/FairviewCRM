@@ -61,7 +61,7 @@ class Activities extends Component {
             activities = this.props.store.Activities.filteredActivities.map(item => {
                 console.log(item);
                 return (
-                    <ActivitiesCard key={item.id} config={item}/>
+                    <ActivitiesCard key={item.id} config={item} widthLg={4} widthXl={3}/>
                 )
             })
         }

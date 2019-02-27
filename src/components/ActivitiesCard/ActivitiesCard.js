@@ -48,9 +48,11 @@ class ActivitiesCard extends Component {
 
     render() {
         const { id, status, activityType, createdAt, createdByUser, dba, provider, updatedAt } = this.props.config;
+        const widthLg = this.props.widthLg;
+        const widthXl = this.props.widthXl;
 
         return (
-                <div className="col-sm-6 col-lg-4 col-xl-3">
+                <div className={`col-sm-6 col-md-4 col-lg-${widthLg} col-xl-${widthXl}`}>
                 <div className="c-card c-card-shadow p-0">
                 <div className="p-3 border-bottom"><a href="lead.html">
                     {/* <div className="t-600-h text-truncate">{activityType.name}</div></a> */}

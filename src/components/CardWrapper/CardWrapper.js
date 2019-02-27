@@ -13,7 +13,7 @@ class CardWrapper extends Component {
         let activities = null
 
         activities = this.props.cardsCategory.array.map(item => {
-            return <ActivitiesCard config={item} />
+            return <ActivitiesCard config={item} widthLg={3} widthLg={4}/>
         })
 
         return (

@@ -23,7 +23,7 @@ class CustomerActivities extends Component {
             activities = this.props.store.CustomerTabs.allActivities.map(item => {
                 console.log(item)
                 return (
-                    <ActivitiesCard key={item.id} config={item}/>
+                    <ActivitiesCard key={item.id} config={item} widthLg={6} widthXl={4}/>
                 )
             })
         }
@@ -41,4 +41,4 @@ class CustomerActivities extends Component {
     }
 }
 
-export default CustomerActivities;
+export {CustomerActivities};

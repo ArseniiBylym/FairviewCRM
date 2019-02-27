@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import {CustomerNotes, CustomerPricing, CustomerPricingRequests, CustomerResources } from './CustomerSubroutes'
-import CustomerActivities from './CustomerSubroutes/Activities'
+import {CustomerActivities, CustomerNotes, CustomerPricing, CustomerPricingRequests, CustomerResources } from './CustomerSubroutes'
+// import CustomerActivities from './CustomerSubroutes/Activities'
 
 class CustomerRoutes extends Component {
     render() {
