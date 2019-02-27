@@ -123,8 +123,8 @@ class LeadSidebar extends Component {
                     </LeadSidebarCard>
                     <LeadSidebarCard editHandler={this.initAddressModalData} withBorder={true} withEditButton={true} relatedModalId="addressModal" header='Address'>
                         <div className="row">
-                            <div className="col-12">
-                                <div className="c-gray-500">
+                            <div className="col-12 ml-2">
+                                <div className="c-gray-500 text-left">
                                     {plAddress1 && <p>{plAddress1}</p>}
                                     {plAddress2 && <p>{plAddress2}</p>}
                                     <p>{`${plCity}, ${plState}, ${plZipcode}`}</p>
@@ -134,10 +134,10 @@ class LeadSidebar extends Component {
                     </LeadSidebarCard>
                     <LeadSidebarCard editHandler={this.initContactModalData} withBorder={true} withEditButton={true} relatedModalId="contactsModal" header='Contact'>
                         <div className="row">
-                            <div className="col-12">
-                                <div className="c-gray-500">{`P. ${contactPhone ? contactPhone : ''} (ext. ${contactExt ? contactExt : ''})`}</div>
-                                <div className="c-gray-500">{`F: ${plFax ? plFax : ''}`}</div>
-                                <div className="c-gray-500">{`E: ${contactEmail}`}</div>
+                            <div className="col-12 ml-2">
+                                <div className="c-gray-500 text-left">{`P. ${contactPhone ? contactPhone : ''} (ext. ${contactExt ? contactExt : ''})`}</div>
+                                <div className="c-gray-500 text-left">{`F: ${plFax ? plFax : ''}`}</div>
+                                <div className="c-gray-500 text-left">{`E: ${contactEmail}`}</div>
                             </div>
                         </div>
                     </LeadSidebarCard>
