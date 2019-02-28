@@ -52,5 +52,21 @@ export class CustomerTabsActionsClass {
         }
     }
 
+    @action async fetchCustomerFiles(customerId) {
+        const token = UserStore.accessToken
+        const result = await fetchFromApi(URL_PATH.PROVIDER_FILE + `?provider_id=${customerId}`, {
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json" 
+            },
+        })
+        if(result.data) {
+            CustomerTabsStore.files = result.data.data
+            CustomerTabsStore.totalFilesLength = result.data.total
+            CustomerTabsStore.filesFetched = true;
+        }
+    }
+
 }
 

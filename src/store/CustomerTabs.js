@@ -60,6 +60,39 @@ const testPR = [
     }
 ]
 
+const testFiles = [
+    {
+        "id": 1,
+        "providerId": 1,
+        "fileName": "File 1.png",
+        "fileTitle": "https://www.qualiscare.com/wp-content/uploads/2017/08/default-user.png",
+        "fileType": "image/png",
+        "createdAt": "2017-08-29T20:40:42.000Z",
+        "updatedAt": "2017-08-29T20:40:42.000Z",
+        "fileLink": "https://www.qualiscare.com/wp-content/uploads/2017/08/default-user.png"
+    },
+    {
+        "id": 2,
+        "providerId": 1,
+        "fileName": "File 2.png",
+        "fileTitle": "https://www.qualiscare.com/wp-content/uploads/2017/08/default-user.png",
+        "fileType": "image/png",
+        "createdAt": "2017-08-29T20:41:53.000Z",
+        "updatedAt": "2017-08-29T20:41:53.000Z",
+        "fileLink": "https://www.qualiscare.com/wp-content/uploads/2017/08/default-user.png"
+    },
+    {
+        "id": 3,
+        "providerId": 1,
+        "fileName": "File 3.png",
+        "fileTitle": "https://www.qualiscare.com/wp-content/uploads/2017/08/default-user.png",
+        "fileType": "image/png",
+        "createdAt": "2017-08-29T20:42:19.000Z",
+        "updatedAt": "2017-08-29T20:42:19.000Z",
+        "fileLink": "https://www.qualiscare.com/wp-content/uploads/2017/08/default-user.png"
+    },
+]
+
 
 export class CustomerTabs {
     @observable activities = [];
@@ -85,6 +118,15 @@ export class CustomerTabs {
     @observable notesFetched = true;
     @computed get allNotes() {
         return this.notes;
+    }
+
+    // @observable files = [];
+    @observable files = testFiles;
+    @observable totalFilesLength = null;
+    // @observable filesFetched = false;
+    @observable filesFetched = true;
+    @computed get allFiles() {
+        return this.files;
     }
 
 }

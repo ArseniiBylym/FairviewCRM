@@ -13,6 +13,7 @@ export const URL_PATH = {
     USERS: '/users',
     PRICING_REQUESTS: '/pricing-request',
     COMMENTS: '/comment', 
+    PROVIDER_FILE: '/provider-file'
 };
 
 const defaultParameters = {
