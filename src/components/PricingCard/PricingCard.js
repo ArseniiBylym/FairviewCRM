@@ -14,8 +14,10 @@ class PricingCard extends Component {
     render() {
 
       const {cardcode, complete, createdAt, createdByUser, createdByUserId, id, note, provider, providerId, updatedAt} = this.props.config;
+      const widthLg = this.props.widthLg;
+      const widthXl = this.props.widthXl
         return (
-            <div className="col-sm-6 col-lg-4 col-xl-3">
+            <div className={`col-sm-6 col-lg-${widthLg} col-xl-${widthXl}`}>
             <div onClick={this.clickCardHandler} className="c-card c-card-shadow p-0">
               <div className="p-3">
                 <a href="#">

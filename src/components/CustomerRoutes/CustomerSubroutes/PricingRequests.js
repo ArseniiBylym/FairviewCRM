@@ -21,7 +21,7 @@ class CustomerPricingRequests extends Component {
             pricingRequests = this.props.store.CustomerTabs.allPricingRequests.map(item => {
                 console.log(item)
                 return (
-                    <PricingCard key={item.databaseId} config={item} />
+                    <PricingCard key={item.databaseId} config={item} widthLg={4} widthXl={4}/>
                 )
             })
         }

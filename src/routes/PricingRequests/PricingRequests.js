@@ -28,7 +28,7 @@ class PricingRequests extends Component {
         if (this.props.store.PricingRequests.filteredRequests.length > 0) {
             requests = this.props.store.PricingRequests.filteredRequests.map((item, i) => {
                 return (
-                    <PricingCard key={item.databaseId} config={item}/>
+                    <PricingCard key={item.databaseId} config={item} widthLg={4} widthXl={3}/>
                 )
             })
         }
