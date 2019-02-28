@@ -3,6 +3,7 @@ import { CustomerTabsActions } from '../../../actions/AllActions'
 import Spinner from '../../../components/Spinner/Spinner'
 import { observer, inject } from 'mobx-react';
 import ActivitiesCard from '../../../components/ActivitiesCard/ActivitiesCard';
+import iconPlusWhite from '../../../resources/img/icon-plus-white.svg'
 
 
 @inject('store')
@@ -31,6 +32,12 @@ class CustomerActivities extends Component {
                             {activities ? activities 
                              : !this.props.store.CustomerTabs.activitiesFetched ? <Spinner /> 
                              : <h4>The customer has no activities</h4> }
+                             <button class="button-floating mainBgColor" type="button" data-toggle="modal" data-target="#activityCreateModal">
+                                <span class="icon">
+                                    <img src={iconPlusWhite}/>
+                                </span>
+                                <span class="text">Create activity</span>
+                            </button>
                         </div>
                     </div>
                 </section>

@@ -11,7 +11,8 @@ export const URL_PATH = {
     QUESTION_WITH_OPTION: '/question-with-option',
     PRICING_REQUEST: '/pricing-request',
     USERS: '/users',
-    PRICING_REQUESTS: '/pricing-request'
+    PRICING_REQUESTS: '/pricing-request',
+    COMMENTS: '/comment', 
 };
 
 const defaultParameters = {

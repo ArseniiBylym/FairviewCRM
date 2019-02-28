@@ -36,5 +36,21 @@ export class CustomerTabsActionsClass {
         }
     }
 
+    @action async fetchCustomerNotes(customerId) {
+        const token = UserStore.accessToken
+        const result = await fetchFromApi(URL_PATH.COMMENTS + `?provider_id=${customerId}`, {
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json" 
+            },
+        })
+        if(result.data) {
+            CustomerTabsStore.notes = result.data.data
+            CustomerTabsStore.totalNotesLength = result.data.total
+            CustomerTabsStore.notesFetched = true;
+        }
+    }
+
 }
 
