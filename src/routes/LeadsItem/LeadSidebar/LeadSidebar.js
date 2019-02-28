@@ -56,13 +56,12 @@ class LeadSidebar extends Component {
 
    
     initDetailsModalHandler = () => {
-        const dba = this.props.store.Leads.currentLead.dba;
-        const legalBusName = this.props.store.Leads.currentLead.legalBusName;
+        const { dba, legalBusName } = this.props.store.Leads.currentLead;
         const options = this.props.store.Leads.customerGroups.map((item, i) => {
             return {value: item.groupCode, label: item.groupName}
         })
         const selectedGroup = options.find((item, i) => {
-            return item.value == this.props.store.Leads.currentLead.providerGroup
+            return item.value == this.props.store.Leads.currentLead.groupId
         })
         this.setState({
             details: {
@@ -77,31 +76,25 @@ class LeadSidebar extends Component {
     }
 
     initAddressModalData = () => {
-        const address1 = this.props.store.Leads.currentLead.plAddress1;
-        const address2 = this.props.store.Leads.currentLead.plAddress2;
-        const city = this.props.store.Leads.currentLead.plCity;
-        const state = this.props.store.Leads.currentLead.plState;
-        const zipCode = this.props.store.Leads.currentLead.plZipcode;
+        const { plAddress1, plAddress2, plCity, plState, plZipcode } = this.props.store.Leads.currentLead;
         this.setState({
             address: {
-                plAddress1: address1,
-                plAddress2: address2,
-                plCity: city,
-                plState: state,
-                plZipcode: zipCode,
+                plAddress1: plAddress1,
+                plAddress2: plAddress2,
+                plCity: plCity,
+                plState: plState,
+                plZipcode: plZipcode,
             }
         })
     }
 
     initContactModalData = () => {
-        const phone = this.props.store.Leads.currentLead.contactPhone
-        const ext = this.props.store.Leads.currentLead.contactExt
-        const email = this.props.store.Leads.currentLead.contactEmail
+        const { contactPhone, contactExt, contactEmail } = this.props.store.Leads.currentLead;
         this.setState({
             contact: {
-                contactPhone: phone,
-                contactExt: ext,
-                contactEmail: email,
+                contactPhone: contactPhone,
+                contactExt: contactExt,
+                contactEmail: contactEmail,
             },
         })
     }
