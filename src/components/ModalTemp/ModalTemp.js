@@ -7,7 +7,7 @@ class ModalTemp extends Component {
     render() {
         const data = this.props;
         return (
-            <div className="modal fade" id={data.id} tabindex="-1" role="dialog" style={{display: 'none'}} aria-hidden="true">
+            <div className="modal fade" id={data.id} tabIndex="-1" role="dialog" style={{display: 'none'}} aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">

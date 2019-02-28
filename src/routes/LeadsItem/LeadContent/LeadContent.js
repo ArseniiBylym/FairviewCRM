@@ -9,7 +9,6 @@ class LeadContent extends Component {
     render() {
 
         const id = this.props.match.params.id;
-        console.log(id);
         return (
             <div className="LeadContent page-content">
                <div className="position-sticky-0">

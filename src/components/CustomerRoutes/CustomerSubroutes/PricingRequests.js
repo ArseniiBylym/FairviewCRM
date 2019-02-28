@@ -19,7 +19,6 @@ class CustomerPricingRequests extends Component {
 
         if (this.props.store.CustomerTabs.allPricingRequests && this.props.store.CustomerTabs.allPricingRequests.length > 0) {
             pricingRequests = this.props.store.CustomerTabs.allPricingRequests.map(item => {
-                console.log(item)
                 return (
                     <PricingCard key={item.databaseId} config={item} widthLg={4} widthXl={4}/>
                 )

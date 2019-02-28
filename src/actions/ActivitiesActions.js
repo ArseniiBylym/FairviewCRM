@@ -44,7 +44,6 @@ export class ActivitiesActionsClass {
     }
 
     @action async postNewActivity(inputsValues) {
-        console.log(inputsValues)
 
         const body = JSON.stringify(inputsValues)
 
@@ -58,7 +57,6 @@ export class ActivitiesActionsClass {
             data: body
         })
         if (result.data) {
-            console.log(result.data)
             this.pushNewlyCreatedActivity(result.data)
         }
 

@@ -261,7 +261,6 @@ class LeadSidebar extends Component {
 
 //Inputs and selects handlers
     editInputHandler = e => {
-        console.log(e.target.name)
         const type = e.target.dataset.type;
         this.setState({
             [type]: {

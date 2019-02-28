@@ -92,8 +92,6 @@ export class LeadsActionsClass {
             },
             data: body
         })
-        console.log(result.data);
-        console.log(LeadsStore.currentLead)
         if(result.data) {
             LeadsStore.currentLead = result.data;
         }
@@ -117,7 +115,6 @@ export class LeadsActionsClass {
             },
             data: body
         })
-        console.log(result);
     }
 
     @action searchFieldHandler(value) {

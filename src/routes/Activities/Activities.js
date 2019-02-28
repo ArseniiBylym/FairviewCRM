@@ -53,7 +53,6 @@ class Activities extends Component {
                     </Fragment>
         })
 
-        console.log(this.props.store)
     }
     
     componentDidMount = async () => {
@@ -66,12 +65,10 @@ class Activities extends Component {
     }
     
     render() {
-        console.log(this.props.store)
         let activities = null;
 
         if(this.props.store.Activities.filteredActivities.length > 0) {
             activities = this.props.store.Activities.filteredActivities.map(item => {
-                console.log(item);
                 return (
                     <ActivitiesCard key={item.id} config={item} widthLg={4} widthXl={3}/>
                 )

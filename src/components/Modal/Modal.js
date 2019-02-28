@@ -9,7 +9,7 @@ class Modal extends Component {
         const data = this.props.store.Modal;
 
         return (
-            <div class="modal fade" id="mainModal" tabindex="-1" role="dialog" style={{display: 'none'}} aria-hidden="true">
+            <div class="modal fade" id="mainModal" tabIndex="-1" role="dialog" style={{display: 'none'}} aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
