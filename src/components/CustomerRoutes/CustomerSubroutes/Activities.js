@@ -9,11 +9,8 @@ import ActivitiesCard from '../../../components/ActivitiesCard/ActivitiesCard';
 @observer
 class CustomerActivities extends Component {
     componentDidMount = () => {
-        console.log('Activities mount')
         CustomerTabsActions.fetchCustomerActivities(this.props.providerId)
     }
-
-
 
     render() {
 
@@ -21,7 +18,6 @@ class CustomerActivities extends Component {
 
         if(this.props.store.CustomerTabs.allActivities && this.props.store.CustomerTabs.allActivities.length > 0) {
             activities = this.props.store.CustomerTabs.allActivities.map(item => {
-                console.log(item)
                 return (
                     <ActivitiesCard key={item.id} config={item} widthLg={6} widthXl={4}/>
                 )
@@ -32,7 +28,9 @@ class CustomerActivities extends Component {
                 <section>
                     <div className="p-2r">
                         <div className="row">
-                            {activities}
+                            {activities ? activities 
+                             : !this.props.store.CustomerTabs.activitiesFetched ? <Spinner /> 
+                             : <h4>The customer has no activities</h4> }
                         </div>
                     </div>
                 </section>

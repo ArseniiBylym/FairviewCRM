@@ -13,10 +13,26 @@ export class CustomerTabsActionsClass {
                 "Content-Type": "application/json" 
             },
         })
-        console.log(result);
         if(result.data) {
             CustomerTabsStore.activities = result.data.data
-            CustomerTabsStore.totalLength = result.data.total
+            CustomerTabsStore.totalActivitiesLength = result.data.total
+            CustomerTabsStore.activitiesFetched = true;
+        }
+    }
+
+    @action async fetchCustomerPricingRequests(customerId) {
+        const token = UserStore.accessToken
+        const result = await fetchFromApi(URL_PATH.PRICING_REQUEST + `?provider_id=${customerId}`, {
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json" 
+            },
+        })
+        if(result.data) {
+            CustomerTabsStore.pricingRequests = result.data.data
+            CustomerTabsStore.totalPRLength = result.data.total
+            CustomerTabsStore.pricingRequestsFetched = true;
         }
     }
 
